@@ -1,0 +1,13 @@
+.element {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  max-width: 282px;
+  border-radius: 10px;
+  list-style: none;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow: hidden;
+  color: black;
+  background-color: white;
+}

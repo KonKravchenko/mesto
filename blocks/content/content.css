@@ -1,0 +1,7 @@
+.content {
+  grid-area: content;
+  display: grid;
+  row-gap: 51px;
+  margin: 0px;
+  padding: 40px 0 66px;
+}

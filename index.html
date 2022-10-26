@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="./pages/index.css">
+  <link rel="icon" type="image/svg+xml" href="./images/favicon.svg">
+  <link rel="icon" type="image/png" href="./images/favicon.png">
+  <title>Mesto</title>
+</head>
+
+<body>
+  <div class="page">
+    <header class="header">
+      <img class="header__logo" src="./images/__logo_white.svg" alt="Места России">
+    </header>
+
+    <main class="content">
+
+      <!--Профиль-->
+      <section class="profile">
+        <div class="profile__info">
+          <div class="profile__avatar"></div>
+          <div class="profile__rotor">
+            <h2 class="profile__name">Жак-Ив Кусто</h2>
+            <button class="profile__edit-button"></button>
+            <p class="profile__about">Исследователь океана</p>
+          </div>
+        </div>
+
+        <button class="profile__add-button"></button>
+
+      </section>
+
+      <!--Картинки-->
+      <section class="elements">
+        <ul class="elements__list">
+          <li class="element">
+            <img class="element__image" src="./images/karachaevsk.png">
+            <div class="element__group">
+              <h2 class="element__title">Карачаевск</h2>
+              <div class="element__like element__like_disabled"></div>
+            </div>
+          </li>
+
+
+          <li class="element">
+            <img class="element__image" src="./images/elbrus.png">
+            <div class="element__group">
+              <h2 class="element__title">Гора Эльбрус</h2>
+              <div class="element__like element__like_disabled"></div>
+            </div>
+          </li>
+
+          <li class="element">
+            <img class="element__image" src="./images/dombay.png">
+            <div class="element__group">
+              <h2 class="element__title">Домбай</h2>
+              <div class="element__like element__like_disabled"></div>
+            </div>
+          </li>
+
+          <li class="element">
+            <img class="element__image" src="./images/elbrus.png">
+            <div class="element__group">
+              <h2 class="element__title">Гора Эльбрус</h2>
+              <div class="element__like element__like_disabled"></div>
+            </div>
+          </li>
+
+          <li class="element">
+            <img class="element__image" src="./images/dombay.png">
+            <div class="element__group">
+              <h2 class="element__title">Домбай</h2>
+              <div class="element__like element__like_disabled"></div>
+            </div>
+          </li>
+
+          <li class="element">
+            <img class="element__image" src="./images/karachaevsk.png">
+            <div class="element__group">
+              <h2 class="element__title">Карачаево-Черкесия</h2>
+              <div class="element__like element__like_disabled"></div>
+            </div>
+          </li>
+        </ul>
+      </section>
+      <!--Попап-->
+      <section class="popup">
+        <div class="popup__container">
+
+          <form class="popup__content">
+            <h2 class="popup__title">Редактировать профиль</h2>
+            <!--<form class="popup-edit__content-container" name="edit-area">
+          <h2 class="popup-edit__title">Редактировать профиль          </h2>
+          <input class="popup-edit__input popup-edit__input_name-area" type="text" name="name" id="userName" value="">
+          <input class="popup-edit__input popup-edit__input_addictions" type="text" name="aboutPerson" id="userAddictions" value="">
+          <button class="popup-edit__button-save" type="submit">Сохранить</button>
+        </form>-->
+            <input type="text" class="popup__name" name="name" value="" required>
+            <!--<h3 class="popup__name">Жак-Ив Кусто</h2>-->
+            <input type="text" class="popup__about" name="about" value="" required>
+            <!--<p class="popup__about">Исследователь океана</p>-->
+            <input type="submit" class="popup__save" name="button" value="Сохранить">
+            <!--<button class="popup__save">Сохранить</button>-->
+          </form>
+          <button class="popup__close"></button>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">© 2020 Mesto Russia</footer>
+  </div>
+
+
+
+  <script src="./scripts/index.js"></script>
+</body>
+
+</html>

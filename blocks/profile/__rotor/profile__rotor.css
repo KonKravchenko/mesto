@@ -1,0 +1,15 @@
+.profile__rotor {
+  display: flex;
+  flex-wrap: wrap;
+  justify-items: center;
+  justify-content: center;
+  row-gap: 16px;
+  flex-direction: column;
+  max-width: 336px;
+}
+
+@media screen and (max-width: 597px) {
+  .profile__rotor {
+    justify-content: center;
+  }
+}
