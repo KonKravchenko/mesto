@@ -44,11 +44,6 @@
 @import url(../blocks/popup/__name/popup__name.css);
 @import url(../blocks/popup/__about/popup__about.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
-/*----*/
-/*----*/
-/*----*/
-/*----*/
-/*----*/
-/*----*/
+
 /*--Подвал--*/
 @import url(../blocks/footer/footer.css);

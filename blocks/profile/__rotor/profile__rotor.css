@@ -1,9 +1,4 @@
 .profile__rotor {
-  /*row-gap: 16px;
-  flex-wrap: wrap;
-  justify-items: center;
-  justify-content: center;
-  flex-direction: column;*/
   display: grid;
   align-self: center;
   align-items: baseline;
@@ -12,7 +7,6 @@
   grid-template-columns: repeat(2, minmax(min-content, max-content));
   grid-template-rows: repeat(2, minmax(min-content, max-content));
   max-width: 336px;
-
 }
 
 @media screen and (max-width: 597px) {

@@ -5,8 +5,4 @@
   background-size: cover;
   box-sizing: border-box;
   background-size: auto;
-  }
-
-  .element__like_disabled:active {
-    background-image: url(../../../../../images/__like_active.svg);
-  }
+}
