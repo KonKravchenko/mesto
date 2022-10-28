@@ -1,5 +1,7 @@
 .profile__name {
-  display: flex;
+  display: grid;
+  grid-column: 1/2;
+  grid-row: 1/2;
   margin: 0;
   padding: 0;
   column-gap: 18px;

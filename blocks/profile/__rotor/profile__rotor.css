@@ -1,11 +1,18 @@
 .profile__rotor {
-  display: flex;
+  /*row-gap: 16px;
   flex-wrap: wrap;
   justify-items: center;
   justify-content: center;
-  row-gap: 16px;
-  flex-direction: column;
+  flex-direction: column;*/
+  display: grid;
+  align-self: center;
+  align-items: baseline;
+  row-gap: 14px;
+  column-gap: 18px;
+  grid-template-columns: repeat(2, minmax(min-content, max-content));
+  grid-template-rows: repeat(2, minmax(min-content, max-content));
   max-width: 336px;
+
 }
 
 @media screen and (max-width: 597px) {
