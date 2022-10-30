@@ -1,4 +1,4 @@
-.popup__content {
+.form/*.popup__content*/  {
   display: grid;
   background: #FFFFFF;
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
@@ -10,11 +10,10 @@
   margin: 0;
   padding: 34px 36px 37px;
   box-sizing: border-box;
-  row-gap: 17px;
-  }
+}
 
 @media screen and (max-width: 433px) {
-  .popup__content {
+  .form {
     padding: 25px 22px;
     width: min(100vw, 282px);
   }

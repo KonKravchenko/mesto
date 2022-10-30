@@ -3,9 +3,9 @@ const popupElement = document.querySelector('.popup');
 const popupCloseButtonElement = popupElement.querySelector('.popup__close');
 const popupOpenButtonElement = document.querySelector('.profile__edit-button');
 
-let popupContent = document.querySelector('.popup__content');
-let popupName = popupContent.querySelector('.popup__name');
-let popupAbout = popupContent.querySelector('.popup__about');
+let popupContent = document.querySelector('.form');
+let popupName = popupContent.querySelector('.form__item_el_name');
+let popupAbout = popupContent.querySelector('.form__item_el_about');
 
 let placeholderName = popupName.getAttribute('placeholder');
 let placeholderAbout = popupAbout.getAttribute('placeholder');
@@ -39,9 +39,9 @@ popupCloseButtonElement.addEventListener('click', closePopup);
 popupElement.addEventListener('click', closePopupByClickOnOverlay);
 
 
-let formElement = document.querySelector('.popup__content');
-let nameInput = formElement.querySelector('.popup__name');
-let aboutInput = formElement.querySelector('.popup__about');
+let formElement = document.querySelector('.form');
+let nameInput = formElement.querySelector('.form__item_el_name');
+let aboutInput = formElement.querySelector('.form__item_el_about');
 function formSubmitHandler(evt) {
   evt.preventDefault();
   const nameProfile = document.querySelector('.profile__name');

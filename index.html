@@ -98,18 +98,20 @@
       <section class="popup">
         <div class="popup__container">
 
-          <form class="popup__content" name="edit_profile">
+          <form class="form" name="edit_profile">
 
-            <h2 class="popup__title">Редактировать профиль</h2>
+            <h2 class="form__title">Редактировать профиль</h2>
 
-            <input type="text" class="popup__name" name="name" value="" placeholder="" autocomplete="off">
+            <fieldset class="form__input-container">
+              <input class="form__item form__item_el_name" type="text" name="name" value="" placeholder="" autocomplete="off">
+              <input class="form__item form__item_el_about" type="text" name="about" value="" placeholder="" autocomplete="off">
+            </fieldset>
 
-            <input type="text" class="popup__about" name="about" value="" placeholder="" autocomplete="off">
-
-            <button type="submit" class="popup__save" name="button" value="Сохранить"
+            <button class="form__button-save" type="submit" name="button" value="Сохранить"
               aria-label="сохранить данные профиля">Сохранить</button>
 
           </form>
+
           <button class="popup__close" type="button" aria-label="закрыть форму ввода данных"></button>
         </div>
       </section>

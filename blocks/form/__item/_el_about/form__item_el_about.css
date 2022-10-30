@@ -1,11 +1,7 @@
-.popup__about {
-  margin: 0;
-  padding: 13px 0;
-    border: none;
+.form__item_el_about /*.popup__about*/ {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
 }
-
