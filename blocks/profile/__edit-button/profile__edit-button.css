@@ -6,13 +6,11 @@
   padding: 0;
   background-image: url(../../../images/__edit-button.svg);
   background-position: center;
-  background-color: black;
   background-repeat: no-repeat;
   width: 24px;
   height: 24px;
   border: 1px solid #FFFFFF;
   background-color: transparent;
-
 }
 
 .profile__edit-button:hover {
