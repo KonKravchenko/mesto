@@ -19,14 +19,14 @@
   opacity: 0.6;
 }
 
-@media screen and (max-width: 686px) {
+@media screen and (max-width: 692px) {
   .profile__add-button {
     width: min(100%, 282px);
     min-height: 50px;
   }
 }
 
-@media screen and (max-width: 384px) {
+@media screen and (max-width: 388px) {
   .profile__add-button {
     background-size: 16px;
   }

@@ -2,7 +2,8 @@
   display: flex;
   margin: 0;
   padding: 0;
-  max-width: 282px;
+  width: min(100vw, 282px);
+  height: min(100vh, 361px);
   border-radius: 10px;
   list-style: none;
   flex-direction: column;
@@ -10,4 +11,5 @@
   overflow: hidden;
   color: black;
   background-color: white;
+  justify-content: space-between;
 }

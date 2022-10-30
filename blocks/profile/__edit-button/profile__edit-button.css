@@ -11,7 +11,8 @@
   width: 24px;
   height: 24px;
   border: 1px solid #FFFFFF;
-  border-radius: 2px;
+  background-color: transparent;
+
 }
 
 .profile__edit-button:hover {
@@ -19,7 +20,13 @@
   opacity: 0.6;
 }
 
-@media screen and (max-width: 384px) {
+/*@media screen and (max-width: 597px) {
+  .profile__edit-button {
+    transform: translateX(42px);
+  }
+}*/
+
+@media screen and (max-width: 388px) {
   .profile__edit-button {
     transform: translateX(28px);
     width: 18px;

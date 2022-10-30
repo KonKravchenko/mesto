@@ -5,3 +5,10 @@
   margin: 0px;
   padding: 40px 0 66px;
 }
+
+@media screen and (max-width: 388px) {
+.content {
+  row-gap: 36px;
+  padding: 42px 0 48px;
+}
+}
