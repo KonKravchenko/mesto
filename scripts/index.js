@@ -17,7 +17,6 @@ const openPopup = function (event) {
   popupElement.classList.add('popup_opened');
   placeholderName = popupName.setAttribute('placeholder', profileName.textContent);
   placeholderAbout = popupAbout.setAttribute('placeholder', profileAbout.textContent);
-
 }
 
 const closePopup = function () {

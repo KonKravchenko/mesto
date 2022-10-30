@@ -9,7 +9,7 @@
   <link rel="icon" type="image/svg+xml" href="./images/favicon.svg">
   <link rel="icon" type="image/png" href="./images/favicon.png">
   <title>Mesto</title>
-  <meta http-equiv="Permissions-Policy" content="interest-cohort=()"/>
+  <meta http-equiv="Permissions-Policy" content="interest-cohort=()" />
 </head>
 
 <body>
@@ -26,7 +26,7 @@
           <img class="profile__avatar" src="./images/avatar.jpg" alt="Жак-Ив Кусто">
           <div class="profile__rotor">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <button class="profile__edit-button" type="button" aria-label="редактировать профиль" ></button>
+            <button class="profile__edit-button" type="button" aria-label="редактировать профиль"></button>
             <p class="profile__about">Исследователь океана</p>
           </div>
         </div>
@@ -42,7 +42,8 @@
             <img class="element__image" src="./images/karachaevsk.png" alt="Карачаевск">
             <div class="element__group">
               <h2 class="element__title">Карачаевск</h2>
-              <button class="element__like element__like_disabled" type="button" aria-label="нравится/не нравится"></button>
+              <button class="element__like element__like_disabled" type="button"
+                aria-label="нравится/не нравится"></button>
             </div>
           </li>
 
@@ -51,7 +52,8 @@
             <img class="element__image" src="./images/elbrus.png" alt="Эльбрус">
             <div class="element__group">
               <h2 class="element__title">Гора Эльбрус</h2>
-              <button class="element__like element__like_disabled" type="button" aria-label="нравится/не нравится"></button>
+              <button class="element__like element__like_disabled" type="button"
+                aria-label="нравится/не нравится"></button>
             </div>
           </li>
 
@@ -59,7 +61,8 @@
             <img class="element__image" src="./images/dombay.png" alt="Домбай">
             <div class="element__group">
               <h2 class="element__title">Домбай</h2>
-              <button class="element__like element__like_disabled" type="button" aria-label="нравится/не нравится"></button>
+              <button class="element__like element__like_disabled" type="button"
+                aria-label="нравится/не нравится"></button>
             </div>
           </li>
 
@@ -67,7 +70,8 @@
             <img class="element__image" src="./images/elbrus.png" alt="Эльбрус">
             <div class="element__group">
               <h2 class="element__title">Гора Эльбрус</h2>
-              <button class="element__like element__like_disabled" type="button" aria-label="нравится/не нравится"></button>
+              <button class="element__like element__like_disabled" type="button"
+                aria-label="нравится/не нравится"></button>
             </div>
           </li>
 
@@ -75,7 +79,8 @@
             <img class="element__image" src="./images/dombay.png" alt="Домбай">
             <div class="element__group">
               <h2 class="element__title">Домбай</h2>
-              <button class="element__like element__like_disabled" type="button" aria-label="нравится/не нравится"></button>
+              <button class="element__like element__like_disabled" type="button"
+                aria-label="нравится/не нравится"></button>
             </div>
           </li>
 
@@ -83,7 +88,8 @@
             <img class="element__image" src="./images/karachaevsk.png" alt="Карачаевск">
             <div class="element__group">
               <h2 class="element__title">Карачаево-Черкесия</h2>
-              <button class="element__like element__like_disabled" type="button" aria-label="нравится/не нравится"></button>
+              <button class="element__like element__like_disabled" type="button"
+                aria-label="нравится/не нравится"></button>
             </div>
           </li>
         </ul>
@@ -93,25 +99,29 @@
         <div class="popup__container">
 
           <form class="popup__content" name="edit_profile">
+
             <h2 class="popup__title">Редактировать профиль</h2>
 
             <input type="text" class="popup__name" name="name" value="" placeholder="" autocomplete="off">
 
             <input type="text" class="popup__about" name="about" value="" placeholder="" autocomplete="off">
 
-            <button type="submit" class="popup__save" name="button" value="Сохранить" aria-label="сохранить данные профиля">Сохранить</button>
+            <button type="submit" class="popup__save" name="button" value="Сохранить"
+              aria-label="сохранить данные профиля">Сохранить</button>
 
           </form>
           <button class="popup__close" type="button" aria-label="закрыть форму ввода данных"></button>
         </div>
       </section>
     </main>
-    <footer class="footer"><p class="footer__text">© 2020 Mesto Russia</p></footer>
+    <footer class="footer">
+      <p class="footer__text">© 2020 Mesto Russia</p>
+    </footer>
   </div>
 
 
 
   <script src="./scripts/index.js"></script>
- </body>
+</body>
 
 </html>
