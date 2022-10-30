@@ -13,6 +13,7 @@
     "footer";
   justify-content: center;
   color: white;
+
   font-family: 'Inter', Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -20,4 +21,10 @@
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   position: relative;
+}
+
+@media screen and (max-width: 320px) {
+  .page {
+    padding: 28px 0 36px;
+  }
 }

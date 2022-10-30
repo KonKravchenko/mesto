@@ -14,3 +14,9 @@
     justify-content: center;
   }
 }
+
+@media screen and (max-width: 384px) {
+  .profile__rotor {
+    column-gap: 10px;
+  }
+}

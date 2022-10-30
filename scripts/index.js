@@ -3,9 +3,22 @@ const popupElement = document.querySelector('.popup');
 const popupCloseButtonElement = popupElement.querySelector('.popup__close');
 const popupOpenButtonElement = document.querySelector('.profile__edit-button');
 
+let popupContent = document.querySelector('.popup__content');
+let popupName = popupContent.querySelector('.popup__name');
+let popupAbout = popupContent.querySelector('.popup__about');
+
+let placeholderName = popupName.getAttribute('placeholder');
+let placeholderAbout = popupAbout.getAttribute('placeholder');
+
+let profileName = document.querySelector('.profile__name');
+let profileAbout = document.querySelector('.profile__about');
+
 const openPopup = function (event) {
   popupElement.classList.add('popup_opened');
+  placeholderName = popupName.setAttribute('placeholder', profileName.textContent);
+ placeholderAbout = popupAbout.setAttribute('placeholder', profileAbout.textContent);
 }
+
 const closePopup = function () {
   popupElement.classList.remove('popup_opened');
 }
@@ -18,6 +31,10 @@ const closePopupByClickOnOverlay = function (event) {
 }
 
 popupOpenButtonElement.addEventListener('click', openPopup);
+
+
+
+
 popupCloseButtonElement.addEventListener('click', closePopup);
 popupElement.addEventListener('click', closePopupByClickOnOverlay);
 
