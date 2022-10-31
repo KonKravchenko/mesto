@@ -9,7 +9,6 @@
   grid-template-rows: repeat(2, minmax(min-content, max-content));
   max-width: 294px;
   box-sizing: border-box;
-
 }
 
 @media screen and (max-width: 597px) {

@@ -18,12 +18,6 @@
   opacity: 0.6;
 }
 
-/*@media screen and (max-width: 597px) {
-  .profile__edit-button {
-    transform: translateX(42px);
-  }
-}*/
-
 @media screen and (max-width: 388px) {
   .profile__edit-button {
     transform: translateX(-18px);

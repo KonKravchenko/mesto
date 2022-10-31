@@ -7,16 +7,16 @@ let popupContent = document.querySelector('.form');
 let popupName = popupContent.querySelector('.form__item_el_name');
 let popupAbout = popupContent.querySelector('.form__item_el_about');
 
-let placeholderName = popupName.getAttribute('placeholder');
-let placeholderAbout = popupAbout.getAttribute('placeholder');
+let valueName = popupName.getAttribute('value');
+let valueAbout = popupAbout.getAttribute('value');
 
 let profileName = document.querySelector('.profile__name');
 let profileAbout = document.querySelector('.profile__about');
 
 const openPopup = function (event) {
   popupElement.classList.add('popup_opened');
-  placeholderName = popupName.setAttribute('placeholder', profileName.textContent);
-  placeholderAbout = popupAbout.setAttribute('placeholder', profileAbout.textContent);
+  valueName = popupName.setAttribute('value', profileName.textContent);
+  valueAbout = popupAbout.setAttribute('value', profileAbout.textContent);
 }
 
 const closePopup = function () {
