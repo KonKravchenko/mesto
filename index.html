@@ -39,12 +39,15 @@
       <section class="elements">
         <ul class="elements__list">
           <li class="element">
-            <img class="element__image" src="./images/karachaevsk.png" alt="Карачаевск">
+            <div class="element__item">
+              <img class="element__image" src="./images/karachaevsk.png" alt="Карачаевск">
+            </div>
             <div class="element__group">
               <h2 class="element__title">Карачаевск</h2>
               <button class="element__like element__like_disabled" type="button"
                 aria-label="нравится/не нравится"></button>
             </div>
+
           </li>
 
 
@@ -103,8 +106,10 @@
             <h2 class="form__title">Редактировать профиль</h2>
 
             <fieldset class="form__input-container">
-              <input class="form__item form__item_el_name" type="text" name="name" value="" placeholder="" autocomplete="off">
-              <input class="form__item form__item_el_about" type="text" name="about" value="" placeholder="" autocomplete="off">
+              <input class="form__item form__item_el_name" type="text" name="name" value="" placeholder=""
+                autocomplete="off">
+              <input class="form__item form__item_el_about" type="text" name="about" value="" placeholder=""
+                autocomplete="off">
             </fieldset>
 
             <button class="form__button-save" type="submit" name="button" value="Сохранить"

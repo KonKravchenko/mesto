@@ -1,5 +1,5 @@
 .profile__about {
-  display:grid;
+
   grid-column: 1/3;
   grid-row: 2/3;
   margin: 0;
@@ -22,9 +22,9 @@
 
 @media screen and (max-width: 388px) {
   .profile__about {
-    max-width: 282px;
+    width: min(100vw, 282px);
     font-size: 14px;
     line-height: 17px;
-    text-align: center;
+
   }
 }

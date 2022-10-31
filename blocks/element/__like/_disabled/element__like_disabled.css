@@ -1,9 +1,5 @@
 .element__like_disabled {
   background-image: url(../../../../images/__like_disabled.svg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  box-sizing: border-box;
 }
 
 .element__like_disabled:active {
