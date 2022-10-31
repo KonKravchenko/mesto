@@ -15,8 +15,10 @@ let profileAbout = document.querySelector('.profile__about');
 
 const openPopup = function (event) {
   popupElement.classList.add('popup_opened');
-  valueName = popupName.setAttribute('value', profileName.textContent);
-  valueAbout = popupAbout.setAttribute('value', profileAbout.textContent);
+  //valueName = popupName.setAttribute('value', profileName.textContent);
+  //valueAbout = popupAbout.setAttribute('value', profileAbout.textContent);
+  nameInput.value = profileName.textContent;
+  aboutInput.value = profileAbout.textContent;
 }
 
 const closePopup = function () {
