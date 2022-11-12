@@ -39,68 +39,15 @@
       <section class="elements">
         <ul class="elements__list">
 
-          <li class="element">
-            <img class="element__image" src="./images/karachaevsk.png" alt="Карачаевск">
-            <div class="element__group">
-              <h2 class="element__title">Карачаевск</h2>
-              <button class="element__like element__like_disabled" type="button"
-                aria-label="нравится/не нравится"></button>
-            </div>
-          </li>
 
-
-          <li class="element">
-            <img class="element__image" src="./images/elbrus.png" alt="Эльбрус">
-            <div class="element__group">
-              <h2 class="element__title">Гора Эльбрус</h2>
-              <button class="element__like element__like_disabled" type="button"
-                aria-label="нравится/не нравится"></button>
-            </div>
-          </li>
-
-          <li class="element">
-            <img class="element__image" src="./images/dombay.png" alt="Домбай">
-            <div class="element__group">
-              <h2 class="element__title">Домбай</h2>
-              <button class="element__like element__like_disabled" type="button"
-                aria-label="нравится/не нравится"></button>
-            </div>
-          </li>
-
-          <li class="element">
-            <img class="element__image" src="./images/elbrus.png" alt="Эльбрус">
-            <div class="element__group">
-              <h2 class="element__title">Гора Эльбрус</h2>
-              <button class="element__like element__like_disabled" type="button"
-                aria-label="нравится/не нравится"></button>
-            </div>
-          </li>
-
-          <li class="element">
-            <img class="element__image" src="./images/dombay.png" alt="Домбай">
-            <div class="element__group">
-              <h2 class="element__title">Домбай</h2>
-              <button class="element__like element__like_disabled" type="button"
-                aria-label="нравится/не нравится"></button>
-            </div>
-          </li>
-
-          <li class="element">
-            <img class="element__image" src="./images/karachaevsk.png" alt="Карачаевск">
-            <div class="element__group">
-              <h2 class="element__title">Карачаево-Черкесия</h2>
-              <button class="element__like element__like_disabled" type="button"
-                aria-label="нравится/не нравится"></button>
-            </div>
-          </li>
         </ul>
       </section>
-      <!--Попап-->
-      <section class="popup">
-        <div class="popup__container">
 
-          <form class="form" name="edit_profile">
+      <!--Попап Профиля-->
+      <section class="popup" id="profile">
+        <div class="popup__container" >
 
+          <form class="form" name="edit_profile" id="edit_profile">
             <h2 class="form__title">Редактировать профиль</h2>
 
             <fieldset class="form__input-container">
@@ -112,17 +59,53 @@
 
             <button class="form__button-save" type="submit" name="button" value="Сохранить"
               aria-label="сохранить данные профиля">Сохранить</button>
-
           </form>
-
           <button class="popup__close" type="button" aria-label="закрыть форму ввода данных"></button>
         </div>
+        </section>
+
+
+       <!--Попап Картинок-->
+       <section class="popup" id="image">
+        <div class="popup__container" >
+
+          <form class="form" name="add_image" id="add_image">
+            <h2 class="form__title">Новое место</h2>
+
+            <fieldset class="form__input-container">
+              <input class="form__item form__item_el_image-title" type="text" name="name" value="" placeholder="Название"
+                autocomplete="off">
+              <input class="form__item form__item_el_image-url" type="url" name="url" value="" placeholder="Ссылка на картинку"
+                autocomplete="off">
+            </fieldset>
+
+            <button class="form__button-save" type="submit" name="button" value="Создать"
+              aria-label="добавить элемент с картинкой">Создать</button>
+          </form>
+          <button class="popup__close" type="button" aria-label="закрыть форму добавления элемента с картинкой"></button>
+        </div>
+
       </section>
+
+
     </main>
     <footer class="footer">
       <p class="footer__text">© 2020 Mesto Russia</p>
     </footer>
   </div>
+
+
+  <template class="list-template">
+
+    <li class="element">
+      <img class="element__image" src="" alt="">
+        <div class="element__group">
+          <h2 class="element__title"></h2>
+          <button class="element__like element__like_disabled" type="button"
+          aria-label="нравится/не нравится"></button>
+      </div>
+
+    </template>
 
 
 
