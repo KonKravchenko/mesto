@@ -34,6 +34,7 @@
 @import url(../blocks/element/__title/element__title.css);
 @import url(../blocks/element/__group/element__group.css);
 @import url(../blocks/element/__image/element__image.css);
+@import url(../blocks/element/__trash/element__trash.css);
 
 /*--Попап--*/
 @import url(../blocks/popup/popup.css);
@@ -48,7 +49,9 @@
 @import url(../blocks/form/__item/form__item.css);
 @import url(../blocks/form/__item/_el_name/form__item_el_name.css);
 @import url(../blocks/form/__item/_el_about/form__item_el_about.css);
-@import url(../blocks/form/__button-save/form__button-save.css);
+@import url(../blocks/form/__item/_el_image-title/form__item_el_image-title.css);
+@import url(../blocks/form/__item/_el_image-url/form__item_el_image-url.css);
+@import url(../blocks/form/__button/form__button.css);
 
 /*--Подвал--*/
 @import url(../blocks/footer/footer.css);
