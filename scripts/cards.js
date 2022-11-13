@@ -45,8 +45,27 @@ const getTodoItemEl = (element) => {
   return el;
 }
 
+//Удаление карточек
+
+const deleteHandler = (event) => {
+  const target = event.target;
+  const currentListItemEl = target.closest('.element');
+  currentListItemEl.remove();
+  console.log(currentListItemEl);
+}
+
+const setEventListener = (el) => {
+
+  const deleteButton = el.querySelector('.element__trash');
+  deleteButton.addEventListener('click', deleteHandler);
+}
+
+
+//так жу вставка карточек
+
 const renderItem = (element) => {
   const el = getTodoItemEl(element);
+  setEventListener(el);
   container.append(el);
 }
 
@@ -66,43 +85,21 @@ formElImage.addEventListener('submit', (event) => {
   const elTitle = el.querySelector('.element__title');
   const elImage = el.querySelector('.element__image');
 
-   elTitle.textContent = imageTitleInput.value;
-   elTitle.alt = imageTitleInput.value;
-   elImage.src = imageUrlInput.value;
+  elTitle.textContent = imageTitleInput.value;
+  elTitle.alt = imageTitleInput.value;
+  elImage.src = imageUrlInput.value;
 
-     container.prepend(el);
-    closePopup();
+  container.prepend(el);
+  closePopup();
 
 });
-
 
 //Лайк
 
 container.addEventListener('click', function (evt) {
-if (evt.target.classList.contains('element__like')) {
-evt.target.classList.toggle('element__like_active');
-   }
-  });
+  if (evt.target.classList.contains('element__like')) {
+    evt.target.classList.toggle('element__like_active');
+  }
+});
 
 
-//Удаление карточек
-
-
-
-
-
-//elementList.addEventListener('click', function(evt) {
-
- // const el = elementList.querySelector('.element');
-//console.log(el);
-//const deleteButton = el.querySelector('.element__trash');
-//console.log(deleteButton);
-
-//  if (evt.target.classList.contains('element__trash')) {
-//    evt.target.classList.remove('element');}
-
- //     console.log('удалил');
- //     removeEl = deleteButton.closest('.element');
- //     removeEl.remove();
- // }
-//);

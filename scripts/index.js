@@ -1,15 +1,25 @@
 const popupElement = document.querySelector('.popup');
 const popupProfile = document.querySelector('#profile');
-const popupImage = document.querySelector('#image');
+const popupImage = document.querySelector('#card');
+
+
 
 const popupCloseButtonElProfile = popupProfile.querySelector('.popup__close');
 const popupCloseButtonElImage = popupImage.querySelector('.popup__close');
 
 //Профиль
 const popupOpenButtonElementProfile = document.querySelector('.profile__edit-button');
-
 //Картинки
 const popupOpenButtonElementImage = document.querySelector('.profile__add-button');
+
+//Открытие попапа
+const openPopupImage = function (event) {
+  popupImage.classList.add('popup_opened');
+  imageTitleInput.value = '';
+  imageUrlInput.value = '';
+};
+
+
 
 let popupContent = document.querySelector('.form');
 let popupName = popupContent.querySelector('.form__item_el_name');
@@ -22,18 +32,14 @@ let valueAbout = popupAbout.getAttribute('value');
 let profileName = document.querySelector('.profile__name');
 let profileAbout = document.querySelector('.profile__about');
 
+//открытие попапа
 const openPopupProfile = function (event) {
   popupProfile.classList.add('popup_opened');
   nameInput.value = profileName.textContent;
   aboutInput.value = profileAbout.textContent;
 };
 
-const openPopupImage = function (event) {
-  popupImage.classList.add('popup_opened');
-  imageTitleInput.value = '';
-  imageUrlInput.value = '';
-};
-
+//закрытие попапа
 const closePopup = function () {
   popupProfile.classList.remove('popup_opened');
   popupImage.classList.remove('popup_opened');
