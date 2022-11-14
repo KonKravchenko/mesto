@@ -43,6 +43,7 @@ const openPopupProfile = function (event) {
 const closePopup = function () {
   popupProfile.classList.remove('popup_opened');
   popupImage.classList.remove('popup_opened');
+
 }
 
 const closePopupByClickOnOverlay = function (event) {
@@ -80,8 +81,3 @@ function formSubmitHandler(evt) {
 }
 
 formElProfile.addEventListener('submit', formSubmitHandler);
-
-
-
-
-

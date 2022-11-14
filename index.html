@@ -45,7 +45,7 @@
 
       <!--Попап Профиля-->
       <section class="popup" id="profile">
-        <div class="popup__container" >
+        <div class="popup__container">
 
           <form class="form" name="edit_profile" id="edit_profile">
             <h2 class="form__title">Редактировать профиль</h2>
@@ -62,30 +62,33 @@
           </form>
           <button class="popup__close" type="button" aria-label="закрыть форму ввода данных"></button>
         </div>
-        </section>
+      </section>
 
 
-       <!--Попап Карточек-->
-       <section class="popup" id="card">
-        <div class="popup__container" >
+      <!--Попап Карточек-->
+      <section class="popup" id="card">
+        <div class="popup__container">
 
           <form class="form" name="add_image" id="add_image">
             <h2 class="form__title">Новое место</h2>
 
             <fieldset class="form__input-container">
-              <input class="form__item form__item_el_image-title" type="text" name="name" value="" placeholder="Название"
-                autocomplete="off">
-              <input class="form__item form__item_el_image-url" type="url" name="url" value="" placeholder="Ссылка на картинку"
-                autocomplete="off">
+              <input class="form__item form__item_el_image-title" type="text" name="name" value=""
+                placeholder="Название" autocomplete="off">
+              <input class="form__item form__item_el_image-url" type="url" name="url" value=""
+                placeholder="Ссылка на картинку" autocomplete="off">
             </fieldset>
 
             <button class="form__button" type="submit" name="button" value="Создать"
               aria-label="добавить элемент с картинкой">Создать</button>
           </form>
-          <button class="popup__close" type="button" aria-label="закрыть форму добавления элемента с картинкой"></button>
+          <button class="popup__close" type="button"
+            aria-label="закрыть форму добавления элемента с картинкой"></button>
         </div>
 
       </section>
+
+
 
 
     </main>
@@ -100,17 +103,28 @@
     <li class="element">
       <button class="element__trash" type="button" aria-label="Удалить"></button>
       <img class="element__image" src="" alt="">
-        <div class="element__group">
-          <h2 class="element__title"></h2>
-          <button class="element__like" type="button" aria-label="нравится/не нравится"></button>
+      <div class="element__group">
+        <h2 class="element__title"></h2>
+        <button class="element__like" type="button" aria-label="нравится/не нравится"></button>
+      </div>
+<!--Попап Картинок-->
+      <div class="image-popup">
+        <div class="image-popup__container">
+          <img class="image-popup__image" src="" alt="">
+          <h2 class="image-popup__title"></h2>
+          <button class="popup__close" type="button" aria-label="закрыть картинку"></button>
+        </div>
       </div>
 
-    </template>
+    </li>
+
+  </template>
 
 
 
   <script src="./scripts/index.js"></script>
   <script src="./scripts/cards.js"></script>
+  <!--<script src="./scripts/image-popup.js"></script>-->
 </body>
 
 </html>

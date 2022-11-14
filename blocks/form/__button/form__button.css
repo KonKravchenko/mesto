@@ -20,7 +20,7 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 433px) {
+@media screen and (max-width: 445px) {
   .form__button {
     min-height: 48px;
     font-size: 14px;

@@ -9,11 +9,11 @@
 
 }
 
-@media screen and (max-width: 938px) {
+/*@media screen and (max-width: 938px) {
   .profile {
     padding: 0 19px;
   }
-}
+}*/
 
 @media screen and (max-width: 692px) {
   .profile {
@@ -22,7 +22,7 @@
   }
 }
 
-@media screen and (max-width: 350px) {
+/*@media screen and (max-width: 350px) {
   .profile {
     padding: 0;
   }

@@ -37,12 +37,46 @@ const getTodoItemEl = (element) => {
   const el = itemTemplate.content.cloneNode(true).children[0];
   const elTitle = el.querySelector('.element__title');
   const elImage = el.querySelector('.element__image');
+  const elPopupImage = el.querySelector('.image-popup__image');
+  const elPopupImageTitle = el.querySelector('.image-popup__title');
+
 
   elTitle.textContent = element.name;
   elImage.src = element.link;
   elImage.alt = element.name;
 
+  elPopupImage.src = element.link;
+  elPopupImage.alt = element.name;
+  elPopupImageTitle.textContent = element.name;
+
+
   return el;
+}
+
+//Открытие картинки
+const openImageHandler = (event) => {
+  const target = event.target;
+  const uri = target.closest('.element');
+  const cardEl = uri.querySelector('.image-popup');
+  cardEl.classList.add('image-popup_opened');
+}
+
+const openImage = (el) => {
+  const elImage = el.querySelector('.element__image');
+  elImage.addEventListener('click', openImageHandler);
+}
+
+//Закрытие картинки
+const closeImageHandler = (event) => {
+  const target = event.target;
+  const uri = target.closest('.element');
+  const cardEl = uri.querySelector('.image-popup');
+  cardEl.classList.remove('image-popup_opened');
+}
+
+const closeImage = (el) => {
+  const closeButtonImage = el.querySelector('.popup__close');
+  closeButtonImage.addEventListener('click', closeImageHandler);
 }
 
 //Удаление карточек
@@ -51,20 +85,21 @@ const deleteHandler = (event) => {
   const target = event.target;
   const currentListItemEl = target.closest('.element');
   currentListItemEl.remove();
-  console.log(currentListItemEl);
+
 }
 
 const setEventListener = (el) => {
-
   const deleteButton = el.querySelector('.element__trash');
   deleteButton.addEventListener('click', deleteHandler);
 }
 
 
-//так жу вставка карточек
+//так жe вставка карточек
 
 const renderItem = (element) => {
   const el = getTodoItemEl(element);
+  openImage(el);
+  closeImage(el);
   setEventListener(el);
   container.append(el);
 }
@@ -84,11 +119,20 @@ formElImage.addEventListener('submit', (event) => {
   const el = itemTemplate.content.cloneNode(true).children[0];
   const elTitle = el.querySelector('.element__title');
   const elImage = el.querySelector('.element__image');
+  const elPopupImage = el.querySelector('.image-popup__image');
+  const elPopupImageTitle = el.querySelector('.image-popup__title');
 
   elTitle.textContent = imageTitleInput.value;
-  elTitle.alt = imageTitleInput.value;
+  elImage.alt = imageTitleInput.value;
   elImage.src = imageUrlInput.value;
 
+  elPopupImage.src = imageUrlInput.value;
+  elPopupImage.alt = imageTitleInput.value;
+  elPopupImageTitle.textContent = imageTitleInput.value;
+
+  setEventListener(el);
+  openImage(el);
+  closeImage(el);
   container.prepend(el);
   closePopup();
 
@@ -101,5 +145,4 @@ container.addEventListener('click', function (evt) {
     evt.target.classList.toggle('element__like_active');
   }
 });
-
 
