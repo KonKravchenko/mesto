@@ -9,21 +9,9 @@
 
 }
 
-/*@media screen and (max-width: 938px) {
-  .profile {
-    padding: 0 19px;
-  }
-}*/
-
 @media screen and (max-width: 692px) {
   .profile {
     flex-direction: column;
     align-items: center;
-  }
-}
-
-/*@media screen and (max-width: 350px) {
-  .profile {
-    padding: 0;
   }
 }

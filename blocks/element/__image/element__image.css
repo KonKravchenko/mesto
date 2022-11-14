@@ -1,5 +1,4 @@
 .element__image {
-  /*display: flex;*/
   margin: 0;
   padding: 0;
   aspect-ratio: 1/1;
@@ -13,4 +12,3 @@
   white-space: nowrap;
   overflow: hidden;
 }
-
