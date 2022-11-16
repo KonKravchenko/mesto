@@ -10,8 +10,7 @@
   <title>Mesto</title>
 
   <link rel="stylesheet" href="./pages/index.css">
-  <script defer src="./scripts/cards.js"></script>
-  <script defer src="./scripts/index.js"></script>
+
 </head>
 
 <body>
@@ -52,7 +51,7 @@
 
             <fieldset class="form__input-container">
               <input class="form__item form__item_el_name-title" type="text" autocomplete="off" required>
-              <input class="form__item form__item_el_url-about" type="text"  autocomplete="off" required>
+              <input class="form__item form__item_el_url-about" type="text" autocomplete="off" required>
             </fieldset>
 
             <button class="form__button" type="submit" name="button" value=""
@@ -73,11 +72,9 @@
           <button class="popup__close" type="button" aria-label="закрыть форму ввода данных"></button>
         </div>
 
-        <div class="image-popup__container">
-
-          <img class="image-popup__image" src="#" alt="">
-          <h2 class="image-popup__title"></h2>
-
+        <div class="popup__container-big-image">
+          <img class="popup__big-image" src="#" alt="">
+          <h2 class="popup__big-image-title"></h2>
           <button class="popup__close" type="button" aria-label="закрыть форму ввода данных"></button>
         </div>
       </section>
@@ -103,7 +100,8 @@
 
   </template>
 
-
+<script src="./scripts/cards.js"></script>
+  <script src="./scripts/index.js"></script>
 </body>
 
 </html>

@@ -1,4 +1,4 @@
-.image-popup__image {
+.popup__big-image {
   grid-column: 1/2;
   grid-row: 2/3;
   max-width: min(75vw, 816px);

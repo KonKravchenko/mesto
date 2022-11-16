@@ -1,4 +1,4 @@
-.image-popup__container {
+.popup__container-big-image {
   position: absolute;
   top: 50px;
   display: grid;
@@ -13,7 +13,7 @@
 }
 
 @media screen and (max-width: 597px) {
-  .image-popup__container {
+  .popup__container-big-image {
     grid-template-columns: minmax(min-content, max-content);
     grid-template-rows: minmax(min-content, max-content);
     gap: 16px;

@@ -3,7 +3,7 @@ const popup = document.querySelector('.popup');
 //контейнер формы редактирования профиля и добавления карточки
 const containerFormPopupCardProfile = popup.querySelector('.popup__container');
 //контейнер формы большой картинки
-const containerBigImageForm = popup.querySelector('.image-popup__container');
+const containerBigImageForm = popup.querySelector('.popup__container-big-image');
 //кнопка Закрытия
 const popupCloseCardProfileButton = containerFormPopupCardProfile.querySelector('.popup__close');//кнопка
 const popupCloseBigImageButton = containerBigImageForm.querySelector('.popup__close');//кнопка
@@ -16,8 +16,8 @@ const popupOpenButtonFormAddCard = document.querySelector('.profile__add-button'
 const itemTemplate = document.querySelector('.item-template').content;
 const elTemplate = itemTemplate.querySelector('.element');
 //большая картинка c заголовком
-const bigImageTitle = containerBigImageForm.querySelector('.image-popup__title');
-const bigImage = containerBigImageForm.querySelector('.image-popup__image');
+const bigImageTitle = containerBigImageForm.querySelector('.popup__big-image-title');
+const bigImage = containerBigImageForm.querySelector('.popup__big-image');
 
 const container = document.querySelector('.elements__list');
 const elTemplateTitle = elTemplate.querySelector('.element__title');
@@ -82,6 +82,7 @@ const popupOpenBigImageHandler = (event) => {
   if (containerBigImageForm.classList.contains('hidden')) {
     containerBigImageForm.classList.remove('hidden');
   };
+  popup.classList.add('popup__big-image-background');
   bigImageTitle.textContent = target.alt;
   bigImage.src = target.src;
 };
@@ -99,6 +100,9 @@ popupOpenButtonFormAddCard.addEventListener('click', function (event) {
   containerBigImageForm.classList.add('hidden')
   if (containerFormPopupCardProfile.classList.contains('hidden')) {
     containerFormPopupCardProfile.classList.remove('hidden');
+  };
+  if(popup.classList.contains('popup__big-image-background')) {
+    popup.classList.remove('popup__big-image-background')
   };
 
   formCardTitle.textContent = 'Новое место';
@@ -144,6 +148,10 @@ popupOpenButtonFormEditProfile.addEventListener('click', function (event) {
   containerBigImageForm.classList.add('hidden');
   if (containerFormPopupCardProfile.classList.contains('hidden')) {
     containerFormPopupCardProfile.classList.remove('hidden');
+  };
+
+  if(popup.classList.contains('popup__big-image-background')) {
+    popup.classList.remove('popup__big-image-background')
   };
   formProfileTitle.textContent = 'Редактировать профиль';
 

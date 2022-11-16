@@ -42,13 +42,12 @@
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__close/popup__close.css);
 @import url(../blocks/popup/__container/popup__container.css);
+@import url(../blocks/popup/__big-image/popup__big-image.css);
+@import url(../blocks/popup/__big-image-title/popup__big-image-title.css);
+@import url(../blocks/popup/__big-image-container/popup__container-big-image.css);
+@import url(../blocks/popup/__big-image-background/popup__big-image-background.css);
 
-/*--Попап картинок--*/
-@import url(../blocks/image-popup/image-popup.css);
-@import url(../blocks/image-popup/__container/image-popup__container.css);
-@import url(../blocks/image-popup/__image/image-popup__image.css);
-@import url(../blocks/image-popup/__title/image-popup__title.css);
-@import url(../blocks/image-popup/_opened/image-popup_opened.css);
+
 
 /*--Форма--*/
 @import url(../blocks/form/form.css);
