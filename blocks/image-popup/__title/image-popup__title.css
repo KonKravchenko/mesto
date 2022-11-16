@@ -1,4 +1,6 @@
 .image-popup__title {
+  margin: 0;
+  padding: 0;
   color: rgba(255, 255, 255, 1);
   font-weight: 400;
   font-size: 12px;

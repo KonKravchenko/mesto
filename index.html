@@ -5,11 +5,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-  <link rel="stylesheet" href="./pages/index.css">
   <link rel="icon" type="image/svg+xml" href="./images/favicon.svg">
   <link rel="icon" type="image/png" href="./images/favicon.png">
   <title>Mesto</title>
-  <!--<meta http-equiv="Permissions-Policy" content="interest-cohort=()">???-->
+
+  <link rel="stylesheet" href="./pages/index.css">
+  <script defer src="./scripts/cards.js"></script>
+  <script defer src="./scripts/index.js"></script>
 </head>
 
 <body>
@@ -42,49 +44,44 @@
         </ul>
       </section>
 
-      <!--Попап Профиля-->
-      <section class="popup" id="profile">
-        <div class="popup__container">
+      <section class="popup">
 
-          <form class="form" name="edit_profile" id="edit_profile">
-            <h2 class="form__title">Редактировать профиль</h2>
+        <div class="popup__container">
+          <form class="form form_profile" name="popup_form_profile">
+            <h2 class="form__title"></h2>
 
             <fieldset class="form__input-container">
-              <input class="form__item form__item_el_name" type="text" name="name" value="" placeholder=""
-                autocomplete="off">
-              <input class="form__item form__item_el_about" type="text" name="about" value="" placeholder=""
-                autocomplete="off">
+              <input class="form__item form__item_el_name-title" type="text" autocomplete="off" required>
+              <input class="form__item form__item_el_url-about" type="text"  autocomplete="off" required>
             </fieldset>
 
-            <button class="form__button" type="submit" name="button" value="Сохранить"
-              aria-label="сохранить данные профиля">Сохранить</button>
+            <button class="form__button" type="submit" name="button" value=""
+              aria-label="сохранить данные профиля"></button>
           </form>
+
+          <form class="form form_card" name="popup_form_card">
+            <h2 class="form__title"></h2>
+
+            <fieldset class="form__input-container">
+              <input class="form__item form__item_el_name-title" type="text" autocomplete="off" required>
+              <input class="form__item form__item_el_url-about" type="text" autocomplete="off" required>
+            </fieldset>
+
+            <button class="form__button" type="submit" name="button" value=""
+              aria-label="сохранить данные профиля"></button>
+          </form>
+          <button class="popup__close" type="button" aria-label="закрыть форму ввода данных"></button>
+        </div>
+
+        <div class="image-popup__container">
+
+          <img class="image-popup__image" src="#" alt="">
+          <h2 class="image-popup__title"></h2>
+
           <button class="popup__close" type="button" aria-label="закрыть форму ввода данных"></button>
         </div>
       </section>
 
-
-      <!--Попап Карточек-->
-      <section class="popup" id="card">
-        <div class="popup__container">
-
-          <form class="form" name="add_image" id="add_image">
-            <h2 class="form__title">Новое место</h2>
-
-            <fieldset class="form__input-container">
-              <input class="form__item form__item_el_image-title" type="text" name="name" value=""
-                placeholder="Название" autocomplete="off">
-              <input class="form__item form__item_el_image-url" type="url" name="url" value=""
-                placeholder="Ссылка на картинку" autocomplete="off">
-            </fieldset>
-
-            <button class="form__button" type="submit" name="button" value="Создать"
-              aria-label="добавить элемент с картинкой">Создать</button>
-          </form>
-          <button class="popup__close" type="button"
-            aria-label="закрыть форму добавления элемента с картинкой"></button>
-        </div>
-      </section>
 
     </main>
     <footer class="footer">
@@ -97,28 +94,16 @@
 
     <li class="element">
       <button class="element__trash" type="button" aria-label="Удалить"></button>
-      <img class="element__image" src="." alt="">
+      <img class="element__image" src="#" alt="">
       <div class="element__group">
         <h2 class="element__title"></h2>
         <button class="element__like" type="button" aria-label="нравится/не нравится"></button>
       </div>
-      <!--Попап Картинок-->
-      <div class="image-popup">
-        <div class="image-popup__container">
-          <img class="image-popup__image" src="." alt="">
-          <h2 class="image-popup__title"></h2>
-          <button class="popup__close" type="button" aria-label="закрыть картинку"></button>
-        </div>
-      </div>
-
     </li>
 
   </template>
 
 
-
-  <script src="./scripts/index.js"></script>
-  <script src="./scripts/cards.js"></script>
 </body>
 
 </html>

@@ -11,4 +11,9 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  box-sizing: border-box;
+}
+
+.element__image:hover {
+  cursor: pointer;
 }
