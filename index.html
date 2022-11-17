@@ -44,39 +44,52 @@
         </ul>
       </section>
 
-      <section class="popup">
-
+      <!--Редактирование профиля-->
+      <section class="popup popup__profile">
         <div class="popup__container">
           <form class="form form_profile" name="popup_form_profile">
-            <h2 class="form__title"></h2>
+            <h2 class="form__title">Редактировать профиль</h2>
 
             <fieldset class="form__input-container">
-              <input class="form__item form__item_el_name-title" type="text" autocomplete="off" required>
-              <input class="form__item form__item_el_url-about" type="text" autocomplete="off" required>
+              <input class="form__item form__item_el_name" type="text" name="name" placeholder="Имя" autocomplete="off"
+                required>
+              <input class="form__item form__item_el_about" type="text" name="about" placeholder="О себе"
+                autocomplete="off" required>
             </fieldset>
 
-            <button class="form__button" type="submit" name="button" value=""
-              aria-label="сохранить данные профиля"></button>
+            <button class="form__button" type="submit" name="button" value="Сохранить"
+              aria-label="сохранить данные профиля">Сохранить</button>
           </form>
-
-          <form class="form form_card" name="popup_form_card">
-            <h2 class="form__title"></h2>
-
-            <fieldset class="form__input-container">
-              <input class="form__item form__item_el_name-title" type="text" autocomplete="off" required>
-              <input class="form__item form__item_el_url-about" type="text" autocomplete="off" required>
-            </fieldset>
-
-            <button class="form__button" type="submit" name="button" value=""
-              aria-label="сохранить данные профиля"></button>
-          </form>
-          <button class="popup__close" type="button" aria-label="закрыть форму ввода данных"></button>
+          <button class="popup__close" type="button" aria-label="закрыть форму ввода данных профиля"></button>
         </div>
+      </section>
 
-        <div class="popup__container-big-image">
-          <img class="popup__big-image" src="#" alt="">
-          <h2 class="popup__big-image-title"></h2>
-          <button class="popup__close" type="button" aria-label="закрыть форму ввода данных"></button>
+      <!--Добавление карточки-->
+      <section class="popup popup__card">
+        <div class="popup__container">
+          <form class="form form_card" name="popup_form_card">
+            <h2 class="form__title">Новое место</h2>
+
+            <fieldset class="form__input-container">
+              <input class="form__item form__item_el_title" type="text" name="name" placeholder="Название"
+                autocomplete="off" required>
+              <input class="form__item form__item_el_url" type="url" name="url" placeholder="Ссылка на картинку"
+                autocomplete="off" required>
+            </fieldset>
+
+            <button class="form__button" type="submit" name="button" value="Создать"
+              aria-label="добавить элемент с картинкой">Создать</button>
+          </form>
+          <button class="popup__close" type="button" aria-label="закрыть форму ввода данных карточки"></button>
+        </div>
+      </section>
+
+      <!--Большая картинка-->
+      <section class="popup popup__big-image">
+        <div class="popup__big-image_container">
+          <img class="popup__big-image_image" src="#" alt="">
+          <h2 class="popup__big-image_title"></h2>
+          <button class="popup__close" type="button" aria-label="закрыть большую картинку"></button>
         </div>
       </section>
 
