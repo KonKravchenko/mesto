@@ -1,5 +1,4 @@
 //попапы
-const popup = document.querySelector('.popup');
 const popupProfile = document.querySelector('.popup__profile');
 const popupCard = document.querySelector('.popup__card');
 const popupBigImage = document.querySelector('.popup__big-image');
@@ -111,6 +110,8 @@ const initPopupCloseButtons = (event) => {
 
 initPopupCloseButtons();
 
+
+//Закрытыие через overlay
 const closePopupByClickOnOverlay = function (event) {
   if (event.target !== event.currentTarget) {
     return
@@ -123,9 +124,7 @@ popupCard.addEventListener('click', closePopupByClickOnOverlay);
 popupBigImage.addEventListener('click', closePopupByClickOnOverlay);
 
 
-
 //Функция добавления карточки
-
 const formCardSubmitHandler = (event) => {
   event.preventDefault();
   const newCardData = { name: popupFormTitleInput.value, link: popupFormUrlInput.value }
@@ -156,10 +155,12 @@ const initOpenPopupBigImage = (elTemplateImage) => {
   elImage.addEventListener('click', popupOpenBigImageHandler);
 };
 
+
 //попап добавления карточки
 popupOpenButtonFormAddCard.addEventListener('click', (event) => {
   openPopup(popupCard);
 });
+
 
 //попап редактирования профиля
 popupOpenButtonFormEditProfile.addEventListener('click', (event) => {
@@ -180,6 +181,8 @@ popupOpenButtonFormEditProfile.addEventListener('click', (event) => {
   popupProfile.addEventListener('submit', formProfileSubmitHandler);
 });
 
+
+//рендер
 const renderItem = (cardData) => {
   const newCard = createCard(cardData);
   container.prepend(newCard);
