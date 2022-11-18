@@ -1,7 +1,7 @@
 //попапы
 const popupProfile = document.querySelector('.popup-profile');
-const popupCard = document.querySelector('.popup__card');
-const popupBigImage = document.querySelector('.popup_big-image');
+const popupCard = document.querySelector('.popup-card');
+const popupBigImage = document.querySelector('.popup-big-image');
 
 
 //контейнеры
