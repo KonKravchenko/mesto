@@ -7,7 +7,7 @@ const popupBigImage = document.querySelector('.popup-big-image');
 //контейнеры
 const containerFormPopupProfile = popupProfile.querySelector('.popup__container');//containerFormPopupCardProfile
 const containerFormPopupCard = popupCard.querySelector('.popup__container')
-const containerBigImage = popupBigImage.querySelector('.popup__big-image_container');//containerBigImageForm
+const containerBigImage = popupBigImage.querySelector('.popup__big-image-container');//containerBigImageForm
 
 
 //кнопка Закрытия
@@ -26,8 +26,8 @@ const itemTemplate = document.querySelector('.item-template').content;
 const elTemplate = itemTemplate.querySelector('.element');
 
 //большая картинка c заголовком
-const bigImageTitle = containerBigImage.querySelector('.popup__big-image_title');
-const bigImage = containerBigImage.querySelector('.popup__big-image_image');
+const bigImageTitle = containerBigImage.querySelector('.popup__big-image-title');
+const bigImage = containerBigImage.querySelector('.popup__big-image-image');
 
 
 //сама Карточка
