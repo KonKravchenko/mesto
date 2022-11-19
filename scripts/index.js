@@ -1,4 +1,5 @@
 //попапы
+const popup = document.querySelector('.popup');
 const popupProfile = document.querySelector('.popup__profile');
 const popupCard = document.querySelector('.popup__card');
 const popupBigImage = document.querySelector('.popup__big-image');
@@ -114,7 +115,7 @@ const closePopupByClickOnOverlay = function (event) {
   if (event.target !== event.currentTarget) {
     return
   }
-  closePopup();
+  closePopup(event.currentTarget);
 };
 
 popupProfile.addEventListener('click', closePopupByClickOnOverlay);
