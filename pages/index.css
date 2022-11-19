@@ -39,12 +39,12 @@
 
 /*--Попап--*/
 @import url(../blocks/popup/popup.css);
-@import url(../blocks/popup/__card/popup-card.css);
-@import url(../blocks/popup/__profile/popup-profile.css);
+@import url(../blocks/popup/__card/popup__card.css);
+@import url(../blocks/popup/__profile/popup__profile.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__close/popup__close.css);
 @import url(../blocks/popup/__container/popup__container.css);
-@import url(../blocks/popup/__big-image/popup-big-image.css);
+@import url(../blocks/popup/__big-image/popup__big-image.css);
 @import url(../blocks/popup/__big-image-container/popup__big-image-container.css);
 @import url(../blocks/popup/__big-image-image/popup__big-image-image.css);
 @import url(../blocks/popup/__big-image-title/popup__big-imag-title.css);
