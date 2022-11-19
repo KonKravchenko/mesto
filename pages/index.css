@@ -24,7 +24,6 @@
 @import url(../blocks/profile/__add-button/profile__add-button.css);
 @import url(../blocks/profile/__rotor/profile__rotor.css);
 
-
 /*--Элементы--*/
 @import url(../blocks/elements/elements.css);
 @import url(../blocks/element/element.css);
@@ -48,9 +47,6 @@
 @import url(../blocks/popup/__big-image-container/popup__big-image-container.css);
 @import url(../blocks/popup/__big-image-image/popup__big-image-image.css);
 @import url(../blocks/popup/__big-image-title/popup__big-imag-title.css);
-
-
-
 
 /*--Форма--*/
 @import url(../blocks/form/form.css);

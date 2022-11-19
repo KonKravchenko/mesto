@@ -6,7 +6,6 @@
   justify-items: flex-start;
   max-width: 880px;
   color: rgba(84, 84, 84, 1);
-
 }
 
 @media screen and (max-width: 897px) {
@@ -14,5 +13,3 @@
     padding: 0 19px 0;
   }
 }
-
-
