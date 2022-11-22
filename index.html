@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="./pages/index.css">
   <script defer src="./scripts/cards.js"></script>
   <script defer src="./scripts/index.js"></script>
+  <script defer src="./scripts/validate.js"></script>
 </head>
 
 <body>
@@ -47,18 +48,28 @@
       <!--Редактирование профиля-->
       <section class="popup popup_profile">
         <div class="popup__container">
-          <form class="form form_profile" name="popup_form_profile">
+          <form class="form form_profile" name="popup_form_profile" novalidate>
             <h2 class="form__title">Редактировать профиль</h2>
 
             <fieldset class="form__input-container">
-              <input class="form__item form__item_el_name" type="text" name="name" placeholder="Имя" autocomplete="off"
-                required>
-              <input class="form__item form__item_el_about" type="text" name="about" placeholder="О себе"
-                autocomplete="off" required>
+
+              <div class="form__input">
+                <input class="form__item form__item_el_name" type="text" name="name" placeholder="Имя"
+                  autocomplete="off" required minlength = "2" maxlength="40">
+
+                <span class="form__item-error">ошибка</span>
+              </div>
+
+              <div class="form__input">
+                <input class="form__item form__item_el_about " type="text" name="about" placeholder="О себе"
+                  autocomplete="off" required minlength = "2" maxlength="200">
+
+                <span class="form__item-error">ошибка</span>
+              </div>
             </fieldset>
 
-            <button class="form__button" type="submit" name="button" value="Сохранить"
-              aria-label="сохранить данные профиля">Сохранить</button>
+            <button class="form__button form__button_disabled" type="submit" name="button" value="Сохранить"
+              aria-label="сохранить данные профиля" disabled="true">Сохранить</button>
           </form>
           <button class="popup__close" type="button" aria-label="закрыть форму ввода данных профиля"></button>
         </div>
@@ -67,18 +78,26 @@
       <!--Добавление карточки-->
       <section class="popup popup_card">
         <div class="popup__container">
-          <form class="form form_card" name="popup_form_card">
+          <form class="form form_card" name="popup_form_card" novalidate>
             <h2 class="form__title">Новое место</h2>
 
             <fieldset class="form__input-container">
-              <input class="form__item form__item_el_title" type="text" name="name" placeholder="Название"
-                autocomplete="off" required>
-              <input class="form__item form__item_el_url" type="url" name="url" placeholder="Ссылка на картинку"
-                autocomplete="off" required>
+              <div class="form__input">
+                <input class="form__item form__item_el_title" type="text" name="title" placeholder="Название"
+                  autocomplete="off" required minlength = "2" maxlength="30">
+                <span class="form__item-error">ошибка</span>
+              </div>
+
+              <div class="form__input">
+                <input class="form__item form__item_el_url" type="url" name="url" placeholder="Ссылка на картинку"
+                  autocomplete="off" required>
+                <span class="form__item-error">ошибка</span>
+              </div>
+
             </fieldset>
 
-            <button class="form__button" type="submit" name="button" value="Создать"
-              aria-label="добавить элемент с картинкой">Создать</button>
+            <button class="form__button form__button_disabled" type="submit" name="button" value="Сохранить"
+              aria-label="сохранить данные профиля" disabled="true">Создать</button>
           </form>
           <button class="popup__close" type="button" aria-label="закрыть форму ввода данных карточки"></button>
         </div>

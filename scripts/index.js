@@ -95,10 +95,21 @@ const createCard = (cardData) => {
   return newCard;
 }
 
+//закрытие попапа через Esc
+const closePopupByEsc = (event) => {
+  if (event.key === "Escape") {
+    const openPopup = document.querySelector('.popup_opened')
+    return closePopup(openPopup);
+  }
+  document.addEventListener('keydown', closePopupByEsc);
+}
+
+
 
 //закрытие попапа
 const closePopup = (popup) => {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupByEsc);
 };
 
 const initPopupCloseButtons = (event) => {
@@ -137,7 +148,16 @@ popupCard.addEventListener('submit', formCardSubmitHandler);
 //Открытие попапа
 const openPopup = (popup) => {
   popup.classList.add('popup_opened');
+  closePopupByEsc(popup);
 };
+
+const submitButtonDisabled = (popup) => {
+  const formSubmitButton = popup.querySelector('.form__button');
+  formSubmitButton.setAttribute("disabled", true);
+  formSubmitButton.classList.add("form__button_disabled");
+}
+
+
 
 
 //Открытие большой картинки
@@ -155,10 +175,12 @@ const initOpenPopupBigImage = (elTemplateImage) => {
 };
 
 
+
 //попап добавления карточки
 popupOpenButtonFormAddCard.addEventListener('click', () => {
   openPopup(popupCard);
   formPopupCard.reset();
+  submitButtonDisabled(popupCard);
 });
 
 
@@ -178,6 +200,7 @@ popupOpenButtonFormEditProfile.addEventListener('click', () => {
   popupFormNameInput.value = profileName.textContent;
   popupFormAboutInput.value = profileAbout.textContent;
   openPopup(popupProfile);
+  submitButtonDisabled(popupProfile);
 });
 
 

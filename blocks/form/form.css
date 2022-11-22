@@ -10,6 +10,8 @@
   margin: 0;
   padding: 30px 36px 37px;
   box-sizing: border-box;
+  position: relative;
+  align-content: space-around;
 }
 
 @media screen and (max-width: 445px) {

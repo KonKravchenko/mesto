@@ -58,7 +58,14 @@
 @import url(../blocks/form/__item/_el_name-title/form__item_el_title.css);
 @import url(../blocks/form/__item/_el_url-about/form__item_el_url.css);
 @import url(../blocks/form/__button/form__button.css);
+@import url(../blocks/form/__input/form__input.css);
+
 
 /*--Подвал--*/
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__text/footer__text.css);
+
+@import url(../blocks/error-border/error-border.css);
+@import url(../blocks/form/__item-error/form__item-error.css);
+@import url(../blocks/form/__item-error/_visible/form__item-error_visible.css);
+@import url(../blocks/form/__button/_disabled/form__button_disabled.css);
