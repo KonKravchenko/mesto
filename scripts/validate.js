@@ -16,7 +16,7 @@ const showInputError = (formElement, inputElement, errorMessage, objects) => {
 };
 
 const hideInputError = (formElement, inputElement, objects) => {
-  const formSection= inputElement.closest(`${objects.formSelector}__input`);
+  const formSection = inputElement.closest(`${objects.formSelector}__input`);
   const errorElement = formSection.querySelector(`${objects.inputSelector}-error`);
   inputElement.classList.remove(objects.inputErrorClass);
   errorElement.textContent = '';
@@ -32,19 +32,19 @@ const checkInputValidity = (formElement, inputElement, objects) => {
 };
 
 const disableSubmitButton = (buttonElement, objects) => {
-    buttonElement.setAttribute("disabled", true);
-    buttonElement.classList.add(objects.inactiveButtonClass);
+  buttonElement.setAttribute("disabled", true);
+  buttonElement.classList.add(objects.inactiveButtonClass);
 }
- const enableSubmitButton = (buttonElement, objects) => {
-   buttonElement.removeAttribute("disabled");
-    buttonElement.classList.remove(objects.inactiveButtonClass);
- }
+const enableSubmitButton = (buttonElement, objects) => {
+  buttonElement.removeAttribute("disabled");
+  buttonElement.classList.remove(objects.inactiveButtonClass);
+}
 
- const closeEnableSubmitButton = (buttonElement, objects) => {
+const closeEnableSubmitButton = (buttonElement, objects) => {
   if (closePopup) {
     disableSubmitButton(buttonElement, objects);
   }
- }
+}
 
 const toggleButtonState = (inputList, buttonElement, objects) => {
   const hasInvalidInput = inputList.some(inputElement => !inputElement.validity.valid);
@@ -57,12 +57,10 @@ const toggleButtonState = (inputList, buttonElement, objects) => {
 
 const setFormEventListeners = (formElement, objects) => {
 
-const submitButton = formElement.querySelector(objects.submitButtonSelector);
+  const submitButton = formElement.querySelector(objects.submitButtonSelector);
   formElement.addEventListener('submit', (event) => {
-    event.preventDefault();
     disableSubmitButton(submitButton, objects);
   })
-
 
   const inputList = Array.from(formElement.querySelectorAll(objects.inputSelector));
   inputList.forEach((inputElement) => {

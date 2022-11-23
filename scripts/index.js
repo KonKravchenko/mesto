@@ -149,12 +149,6 @@ const openPopup = (popup) => {
   document.addEventListener('keydown', closePopupByEsc);
 };
 
-//const submitButtonDisabled = (popup) => {
-//  const formSubmitButton = popup.querySelector('.form__button');
- // formSubmitButton.setAttribute("disabled", true);
- // formSubmitButton.classList.add("form__button_disabled");
-//}
-
 
 //Открытие большой картинки
 const popupOpenBigImageHandler = (event) => {
@@ -176,7 +170,6 @@ const initOpenPopupBigImage = (elTemplateImage) => {
 popupOpenButtonFormAddCard.addEventListener('click', () => {
   openPopup(popupCard);
   formPopupCard.reset();
- // submitButtonDisabled(popupCard);
 });
 
 
@@ -196,8 +189,7 @@ popupOpenButtonFormEditProfile.addEventListener('click', () => {
   popupFormNameInput.value = profileName.textContent;
   popupFormAboutInput.value = profileAbout.textContent;
   openPopup(popupProfile);
- // submitButtonDisabled(popupProfile);
-});
+ });
 
 
 //рендер
