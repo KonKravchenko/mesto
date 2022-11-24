@@ -38,12 +38,12 @@ const elTemplateImage = elTemplate.querySelector('.element__image');
 
 
 //поля ввода данных Профидя
-const popupFormNameInput = popupProfile.querySelector('.form__item_el_name');
-const popupFormAboutInput = popupProfile.querySelector('.form__item_el_about');
+const popupFormNameInput = popupProfile.querySelector('.form__item');
+const popupFormAboutInput = popupProfile.querySelector('.form__item_bottom');
 
 //поля ввода данных Карточки
-const popupFormTitleInput = popupCard.querySelector('.form__item_el_title');
-const popupFormUrlInput = popupCard.querySelector('.form__item_el_url');
+const popupFormTitleInput = popupCard.querySelector('.form__item');
+const popupFormUrlInput = popupCard.querySelector('.form__item_bottom');
 const formPopupProfile = popupProfile.querySelector('.form_profile');
 const formPopupCard = popupCard.querySelector('.form_card');
 
@@ -189,7 +189,7 @@ popupOpenButtonFormEditProfile.addEventListener('click', () => {
   popupFormNameInput.value = profileName.textContent;
   popupFormAboutInput.value = profileAbout.textContent;
   openPopup(popupProfile);
- });
+});
 
 
 //рендер
