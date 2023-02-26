@@ -72,6 +72,7 @@ const resetInputItemError = () => {
   const formItemErrorList = Array.from(document.querySelectorAll('.form__item-error'));
   formItemErrorList.forEach((event) => {
     event.classList.remove(config.errorClass);
+    event.textContent = '';
   });
 };
 
