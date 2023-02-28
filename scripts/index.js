@@ -93,14 +93,8 @@ const validatorForm = (formElement) => {
 }
 
 const validationFormProfile = validatorForm(formPopupProfile);
-const validationFormCard = validatorForm(formPopupCard);
 
-// очистка форм
-const resetValidator = (formElement) => {
-  const popupFormValid = new FormValidator(config, formElement);
-  popupFormValid.resetValidation();
-  return popupFormValid;
-}
+const validationFormCard = validatorForm(formPopupCard);
 
 
 // Попап большой картинки
@@ -190,7 +184,7 @@ const openPopup = (popup) => {
 //попап добавления карточки
 popupOpenButtonFormAddCard.addEventListener('click', () => {
   openPopup(popupCard);
-  resetValidator(popupCard);
+  validationFormCard.resetValidation();
   formPopupCard.reset();
 });
 
@@ -199,8 +193,8 @@ popupOpenButtonFormEditProfile.addEventListener('click', () => {
   popupFormNameInput.value = profileName.textContent;
   popupFormAboutInput.value = profileAbout.textContent;
   openPopup(popupProfile);
-  resetValidator(popupProfile);
-});
+  validationFormProfile.resetValidation();
+  });
 
 //функция добавления данных профиля
 const formProfileSubmitHandler = (event) => {
