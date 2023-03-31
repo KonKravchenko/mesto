@@ -1,8 +1,10 @@
+
 class Card {
+
   constructor(template, element, handleOpenPopup) {
     this._template = template;
-    this._name = element.name;
-    this._link = element.link;
+    this._name = element.name || element.title;
+    this._link = element.link || element.url;
     this._handleOpenPopup = handleOpenPopup;
 
     this._deleteCard = this._deleteCard.bind(this);
