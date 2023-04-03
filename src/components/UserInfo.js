@@ -1,27 +1,20 @@
-
 export default class UserInfo {
-  constructor({name, about}){
+  constructor({ name, about }) {
     this._name = name;
     this._about = about;
+    this._inputName = document.querySelector('.form__item');
+    this._inputAbout = document.querySelector('.form__item_bottom');
   }
 
-  getUserInfo(){
-
-this._name = document.querySelector('.profile__name');
-this._about = document.querySelector('.profile__about');
-
-document.querySelector('.form__item').value = this._name.textContent;
-document.querySelector('.form__item_bottom').value = this._about.textContent;
+  getUserInfo() {
+    this._inputName.value = this._name.textContent;
+    this._inputAbout.value = this._about.textContent;
 
   }
 
-  setUserInfo(){
-
-
-document.querySelector('.profile__name').textContent = this._name;
-document.querySelector('.profile__about').textContent = this._about;
-
-
+  setUserInfo() {
+    this._name.textContent = this._inputName.value;
+    this._about.textContent = this._inputAbout.value;
   }
 }
 

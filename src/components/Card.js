@@ -1,14 +1,12 @@
+export default class Card {
+  constructor(templateSelector, cardData, handleOpenImagePopup) {
+    this._template = templateSelector;
+    this._name = cardData.name;
+    this._link = cardData.link;
+    this._handleImageClick = handleOpenImagePopup;
 
-class Card {
-
-  constructor(template, element, handleOpenPopup) {
-    this._template = template;
-    this._name = element.name || element.title;
-    this._link = element.link || element.url;
-    this._handleOpenPopup = handleOpenPopup;
-
-    this._deleteCard = this._deleteCard.bind(this);
-    this._likeCard = this._likeCard.bind(this);
+    this._handleDeleteCard = this._handleDeleteCard.bind(this);
+    this._handleLikeCard = this._handleLikeCard.bind(this);
   }
 
 
@@ -20,25 +18,25 @@ class Card {
   }
 
   _addEventListeners() {
-    this._deleteCardButton = this._element.querySelector('.element__trash');
-    this._likeButton = this._element.querySelector('.element__like');
+    this._buttonDeleteCard = this._element.querySelector('.element__trash');
+    this._ButtonLikeCard = this._element.querySelector('.element__like');
     this._cardImage = this._element.querySelector('.element__image');
     this._cardImageTitle = this._element.querySelector('.element__title');
 
-    this._deleteCardButton.addEventListener('click', this._deleteCard);
-    this._likeButton.addEventListener('click', this._likeCard);
+    this._buttonDeleteCard.addEventListener('click', this._handleDeleteCard);
+    this._ButtonLikeCard.addEventListener('click', this._handleLikeCard);
     this._cardImage.addEventListener('click', () => {
-      this._handleOpenPopup(this._name, this._link)
+      this._handleImageClick(this._name, this._link)
     })
   }
 
-  _deleteCard() {
+  _handleDeleteCard() {
     this._element.remove();
     this._element = null;
   }
 
-  _likeCard() {
-    this._likeButton.classList.toggle('element__like_active');
+  _handleLikeCard() {
+    this._ButtonLikeCard.classList.toggle('element__like_active');
   }
 
   getElement() {
@@ -54,7 +52,7 @@ class Card {
 
 }
 
-export default Card
+
 
 
 

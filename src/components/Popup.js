@@ -1,6 +1,6 @@
 export default class Popup {
-  constructor(popupSelector) {
-    this._popup = popupSelector;
+  constructor(popup) {
+    this._popup = popup;
   }
 
   open() {
@@ -16,7 +16,7 @@ export default class Popup {
 
   _handleEscClose = (event) => {
     if (event.key === "Escape") {
-      return this.close();
+      this.close();
     }
   }
 
@@ -24,7 +24,7 @@ export default class Popup {
     if (event.target !== event.currentTarget) {
       return
     }
-    this.close(event.currentTarget);
+    this.close();
   }
 
   setEventListeners() {
