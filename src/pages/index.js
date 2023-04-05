@@ -113,28 +113,27 @@ const validationFormCard = initFormValidator(formPopupCard);
 
 
 function handleCardFormSubmit(data) {
-  console.log(data);
   cardsSection.prependItem(createCard(data));
 }
 
-const popupCards = (item) => {
+const createPopupCards = (item) => {
   const form = new PopupWithForm(item, handleCardFormSubmit);
   form.setEventListeners();
   return form;
 }
 
-function handleProfileFormSubmit() {
-  userInfo.setUserInfo();
+function handleProfileFormSubmit(data) {
+  userInfo.setUserInfo(data);
 }
 
-const popupProfiles = (item) => {
+const createPopupProfiles = (item) => {
   const form = new PopupWithForm(item, handleProfileFormSubmit);
   form.setEventListeners();
   return form;
 }
 
-const popupFormCard = popupCards(popupCard);
-const popupFormProfile = popupProfiles(popupProfile);
+const popupFormCard = createPopupCards(popupCard);
+const popupFormProfile = createPopupProfiles(popupProfile);
 
 //попап добавления карточки
 popupOpenButtonFormAddCard.addEventListener('click', () => {
@@ -145,13 +144,15 @@ popupOpenButtonFormAddCard.addEventListener('click', () => {
 const userInfo = new UserInfo({
   name: profileName,
   about: profileAbout
-});
+  });
+
+const inputName = formPopupProfile.querySelector('.form__item');
+const inputAbout = formPopupProfile.querySelector('.form__item_bottom');
 
 //попап редактирования профиля
 popupOpenButtonFormEditProfile.addEventListener('click', () => {
-  console.log(userInfo);
-
-  userInfo.getUserInfo();
+  inputName.value = userInfo.getUserInfo().name;
+  inputAbout.value = userInfo.getUserInfo().about;
   popupFormProfile.open();
   validationFormProfile.resetValidation();
 });

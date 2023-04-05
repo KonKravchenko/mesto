@@ -1,6 +1,6 @@
 export default class Card {
   constructor(templateSelector, cardData, handleOpenImagePopup) {
-    this._template = templateSelector;
+    this._templateSelector = templateSelector;
     this._name = cardData.name;
     this._link = cardData.link;
     this._handleImageClick = handleOpenImagePopup;
@@ -11,7 +11,7 @@ export default class Card {
 
 
   _getElementFromTemplate() {
-    return document.querySelector(this._template)
+    return document.querySelector(this._templateSelector)
       .content
       .querySelector('.element')
       .cloneNode(true);
@@ -19,12 +19,12 @@ export default class Card {
 
   _addEventListeners() {
     this._buttonDeleteCard = this._element.querySelector('.element__trash');
-    this._ButtonLikeCard = this._element.querySelector('.element__like');
+    this._buttonLikeCard = this._element.querySelector('.element__like');
     this._cardImage = this._element.querySelector('.element__image');
     this._cardImageTitle = this._element.querySelector('.element__title');
 
     this._buttonDeleteCard.addEventListener('click', this._handleDeleteCard);
-    this._ButtonLikeCard.addEventListener('click', this._handleLikeCard);
+    this._buttonLikeCard.addEventListener('click', this._handleLikeCard);
     this._cardImage.addEventListener('click', () => {
       this._handleImageClick(this._name, this._link)
     })
@@ -36,7 +36,7 @@ export default class Card {
   }
 
   _handleLikeCard() {
-    this._ButtonLikeCard.classList.toggle('element__like_active');
+    this._buttonLikeCard.classList.toggle('element__like_active');
   }
 
   getElement() {
