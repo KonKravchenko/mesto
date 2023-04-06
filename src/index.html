@@ -8,10 +8,6 @@
   <link rel="icon" type="image/svg+xml" href="<%=require('./images/favicon.svg')%>">
   <link rel="icon" type="image/png" href="<%=require('./images/favicon.png')%>">
   <title>Mesto</title>
-  <!-- <link rel="stylesheet" href="./pages/index.css"> -->
-  <!-- <script defer src="./scripts/cards.js"></script>-->
-  <!-- <script defer type="module" src="./index.js"></script> -->
-  <!-- <script defer src="./scripts/validate.js"></script> -->
 </head>
 
 <body>
@@ -39,6 +35,7 @@
 
         </ul>
       </section>
+
       <!--Редактирование профиля-->
       <section class="popup popup_profile">
         <div class="popup__container">
@@ -85,8 +82,6 @@
               <span class="form__item-error"></span>
             </div>
 
-
-
             <button class="form__button form__button_disabled" type="submit" name="button" value="Сохранить"
               aria-label="создать карточку картинки" disabled="true">Создать</button>
           </form>
@@ -104,12 +99,10 @@
       </section>
     </main>
 
-
     <footer class="footer">
       <p class="footer__text">© 2020 Mesto Russia</p>
     </footer>
   </div>
-
 
   <!-- Темплэйт Карточки -->
   <template class="item-template">

@@ -147,10 +147,12 @@ const userInfo = new UserInfo({
 const inputName = formPopupProfile.querySelector('.form__item');
 const inputAbout = formPopupProfile.querySelector('.form__item_bottom');
 
+const userData = userInfo.getUserInfo();
+
 //попап редактирования профиля
 popupOpenButtonFormEditProfile.addEventListener('click', () => {
-  inputName.value = userInfo.getUserInfo().name;
-  inputAbout.value = userInfo.getUserInfo().about;
+  inputName.value = userData.name;
+  inputAbout.value = userData.about;
   popupFormProfile.open();
   validationFormProfile.resetValidation();
 });
