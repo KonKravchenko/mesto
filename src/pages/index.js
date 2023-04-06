@@ -98,8 +98,6 @@ const cardsSection = new Section({
 
 cardsSection.renderItems();
 
-
-
 // Валидация форм
 const initFormValidator = (formElement) => {
   const validForm = new FormValidator(validationConfig, formElement);
@@ -144,7 +142,7 @@ popupOpenButtonFormAddCard.addEventListener('click', () => {
 const userInfo = new UserInfo({
   name: profileName,
   about: profileAbout
-  });
+});
 
 const inputName = formPopupProfile.querySelector('.form__item');
 const inputAbout = formPopupProfile.querySelector('.form__item_bottom');
