@@ -138,6 +138,10 @@
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/popup/__big-image-title/popup__big-imag-title.css ***!
   \**************************************************************************************************************************************************************************************/
 .popup__big-image-title{color:#fff;font-size:12px;font-weight:400;grid-row:3/4;line-height:15px;margin:0;max-width:240px;overflow:hidden;padding:0;text-overflow:ellipsis;white-space:nowrap}
+/*!*******************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/popup/_avatar/popup_avatar.css ***!
+  \*******************************************************************************************************************************************************************/
+.popup_avatar{background-color:rgba(0,0,0,.5);visibility:visible}
 /*!**************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/form/form.css ***!
   \**************************************************************************************************************************************************/

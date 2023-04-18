@@ -63,6 +63,24 @@
         </div>
       </section>
 
+      <!-- Изминение аватара -->
+      <section class="popup popup_avatar">
+        <div class="popup__container">
+          <form class="form form_avatar" name="popup_form_avatar" novalidate>
+            <h2 class="form__title">Обновить аватар</h2>
+            <div>
+              <input class="form__item form__item_bottom" type="url" name="link" placeholder="Ссылка на картинку"
+                autocomplete="off" required>
+              <span class="form__item-error"></span>
+            </div>
+            <button class="form__button form__button_disabled" type="submit" name="button" value="Сохранить"
+              aria-label="изменить аватар" disabled="true">Сохранить</button>
+          </form>
+          <button class="popup__close" type="button" aria-label="закрыть форму ввода данных аватара"></button>
+        </div>
+      </section>
+
+
       <!--Добавление карточки-->
       <section class="popup popup_card">
         <div class="popup__container">
