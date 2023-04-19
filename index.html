@@ -18,7 +18,13 @@
     <main class="content">
       <section class="profile">
         <div class="profile__info">
-          <img class="profile__avatar" src="8e94371e9d2475fdfc60.jpg" alt="Жак-Ив Кусто">
+          <div class="avatar">
+            <img class="profile__avatar" src="8e94371e9d2475fdfc60.jpg" alt="Жак-Ив Кусто">
+            <div class="profile__avatar_overlay"></div>
+            <button class="profile__avatar_edit-button" arial-label="изменить аватар" type="button">
+              <img src="a086f758840ae814ecde.svg">
+            </button>
+          </div>
           <div class="profile__rotor">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <button class="profile__edit-button" type="button" aria-label="редактировать профиль"></button>
@@ -68,8 +74,8 @@
         <div class="popup__container">
           <form class="form form_avatar" name="popup_form_avatar" novalidate>
             <h2 class="form__title">Обновить аватар</h2>
-            <div>
-              <input class="form__item form__item_bottom" type="url" name="link" placeholder="Ссылка на картинку"
+            <div class="form__input">
+              <input class="form__item" type="url" name="link" placeholder="Ссылка на картинку"
                 autocomplete="off" required>
               <span class="form__item-error"></span>
             </div>
@@ -104,6 +110,18 @@
               aria-label="создать карточку картинки" disabled="true">Создать</button>
           </form>
           <button class="popup__close" type="button" aria-label="закрыть форму ввода данных карточки"></button>
+        </div>
+      </section>
+
+      <!-- Удаление карточки -->
+      <section class="popup popup_confirm">
+        <div class="popup__container">
+          <form class="form form_confirm" name="popup_form_confirm">
+            <h2 class="form__title">Вы уверены?</h2>
+            <button class="form__button" type="submit" name="button" value="Уверен"
+              aria-label="уверенность">Да</button>
+          </form>
+          <button class="popup__close" type="button" aria-label="закрыть форму"></button>
         </div>
       </section>
 

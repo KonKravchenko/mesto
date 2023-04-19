@@ -19,12 +19,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
 function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 var Card = /*#__PURE__*/function () {
-  function Card(templateSelector, cardData, handleOpenImagePopup) {
+  function Card(templateSelector, cardData, handleOpenImagePopup, handleConfirmDelete) {
     _classCallCheck(this, Card);
     this._templateSelector = templateSelector;
     this._name = cardData.name;
     this._link = cardData.link;
     this._handleImageClick = handleOpenImagePopup;
+    this._handleConfirmDelete = handleConfirmDelete;
     this._handleDeleteCard = this._handleDeleteCard.bind(this);
     this._handleLikeCard = this._handleLikeCard.bind(this);
   }
@@ -41,7 +42,9 @@ var Card = /*#__PURE__*/function () {
       this._buttonLikeCard = this._element.querySelector('.element__like');
       this._cardImage = this._element.querySelector('.element__image');
       this._cardImageTitle = this._element.querySelector('.element__title');
-      this._buttonDeleteCard.addEventListener('click', this._handleDeleteCard);
+      this._buttonDeleteCard.addEventListener('click', function () {
+        _this._handleDeleteCard(_this._handleConfirmDelete());
+      });
       this._buttonLikeCard.addEventListener('click', this._handleLikeCard);
       this._cardImage.addEventListener('click', function () {
         _this._handleImageClick(_this._name, _this._link);
@@ -50,6 +53,7 @@ var Card = /*#__PURE__*/function () {
   }, {
     key: "_handleDeleteCard",
     value: function _handleDeleteCard() {
+      ;
       this._element.remove();
       this._element = null;
     }
@@ -228,6 +232,59 @@ var Popup = /*#__PURE__*/function () {
   }]);
   return Popup;
 }();
+
+
+/***/ }),
+
+/***/ "./src/components/PopupWithConfirmation.js":
+/*!*************************************************!*\
+  !*** ./src/components/PopupWithConfirmation.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ PopupWithConfirmation)
+/* harmony export */ });
+/* harmony import */ var _Popup_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Popup.js */ "./src/components/Popup.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+function _get() { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get.bind(); } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(arguments.length < 3 ? target : receiver); } return desc.value; }; } return _get.apply(this, arguments); }
+function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+var PopupWithConfirmation = /*#__PURE__*/function (_Popup) {
+  _inherits(PopupWithConfirmation, _Popup);
+  var _super = _createSuper(PopupWithConfirmation);
+  function PopupWithConfirmation(popup) {
+    _classCallCheck(this, PopupWithConfirmation);
+    return _super.call(this, popup);
+  }
+  _createClass(PopupWithConfirmation, [{
+    key: "setEventListeners",
+    value: function setEventListeners() {
+      var _this = this;
+      _get(_getPrototypeOf(PopupWithConfirmation.prototype), "setEventListeners", this).call(this);
+      this._form = this._popup.querySelector('.form');
+      this._form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        console.log(_this._form);
+        _this.close();
+      });
+    }
+  }]);
+  return PopupWithConfirmation;
+}(_Popup_js__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 
 /***/ }),
@@ -533,6 +590,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_PopupWithImage_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/PopupWithImage.js */ "./src/components/PopupWithImage.js");
 /* harmony import */ var _components_UserInfo_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/UserInfo.js */ "./src/components/UserInfo.js");
 /* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./index.css */ "./src/pages/index.css");
+/* harmony import */ var _components_PopupWithConfirmation_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/PopupWithConfirmation.js */ "./src/components/PopupWithConfirmation.js");
+
 
 
 
@@ -595,8 +654,18 @@ function handleOpenImagePopup(name, link) {
   classPopupBibImage.open(name, link);
 }
 ;
+var popupConfirm = document.querySelector('.popup_confirm');
+var popupWithConfirmation = function popupWithConfirmation(item) {
+  var form = new _components_PopupWithConfirmation_js__WEBPACK_IMPORTED_MODULE_8__["default"](item);
+  form.setEventListeners();
+  return form;
+};
+var popupFormConfirm = popupWithConfirmation(popupConfirm);
+function handleConfirmDelete() {
+  popupFormConfirm.open();
+}
 var createCard = function createCard(cardData) {
-  var newCard = new _components_Card_js__WEBPACK_IMPORTED_MODULE_0__["default"]('.item-template', cardData, handleOpenImagePopup);
+  var newCard = new _components_Card_js__WEBPACK_IMPORTED_MODULE_0__["default"]('.item-template', cardData, handleOpenImagePopup, handleConfirmDelete);
   var element = newCard.getElement();
   return element;
 };
@@ -657,6 +726,24 @@ popupOpenButtonFormEditProfile.addEventListener('click', function () {
   inputAbout.value = userData.about;
   popupFormProfile.open();
   validationFormProfile.resetValidation();
+});
+var popupOpenButtonFormEditAvatar = document.querySelector('.profile__avatar_edit-button');
+var createPopupAvatar = function createPopupAvatar(item) {
+  var form = new _components_PopupWithForm_js__WEBPACK_IMPORTED_MODULE_4__["default"](item, handleAvatarFormSubmit);
+  form.setEventListeners();
+  return form;
+};
+var profileAvatar = document.querySelector('.profile__avatar');
+function handleAvatarFormSubmit(data) {
+  profileAvatar.src = data.link;
+}
+var popupAvatar = document.querySelector('.popup_avatar');
+var formPopupAvatar = popupAvatar.querySelector('.form_avatar');
+var validationFormAvatar = initFormValidator(formPopupAvatar);
+var popupFormAvatar = createPopupAvatar(popupAvatar);
+popupOpenButtonFormEditAvatar.addEventListener('click', function () {
+  popupFormAvatar.open();
+  validationFormAvatar.resetValidation();
 });
 })();
 
