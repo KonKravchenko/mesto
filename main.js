@@ -2,6 +2,83 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/components/Api.js":
+/*!*******************************!*\
+  !*** ./src/components/Api.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Api)
+/* harmony export */ });
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+var Api = /*#__PURE__*/function () {
+  function Api(options) {
+    _classCallCheck(this, Api);
+    // тело конструктора
+    this.url = options.url;
+    this.headers = options.headers;
+  }
+  _createClass(Api, [{
+    key: "getProfileData",
+    value: function getProfileData() {
+      return fetch("".concat(this.url, "/users/me"), {
+        headers: this.headers
+      }).then(function (res) {
+        return res.json();
+      })
+      // .then((result) => {
+      //   console.log(result);
+      // })
+      .catch(function (err) {
+        console.log(err); // выведем ошибку в консоль
+      });
+    }
+  }, {
+    key: "setProfileData",
+    value: function setProfileData(data) {
+      return fetch("".concat(this.url, "/users/me"), {
+        method: 'PATCH',
+        headers: this.headers,
+        body: JSON.stringify(data)
+      }).then(function (res) {
+        return res.json();
+      }).catch(function (err) {
+        console.log(err); // выведем ошибку в консоль
+      });
+    }
+  }, {
+    key: "getInitialCards",
+    value: function getInitialCards() {
+      return fetch("".concat(this.url, "/cards"), {
+        headers: this.headers
+      }).then(function (res) {
+        return res.json();
+      }).catch(function (err) {
+        console.log(err); // выведем ошибку в консоль
+      });
+    }
+  }]);
+  return Api;
+}(); //   Токен: e3cda1d4-1903-40f4-b79f-2419b5c60311
+// Идентификатор группы: cohort-64
+// api.getInitialCards()
+//   .then((result) => {
+//     // обрабатываем результат
+//   })
+//   .catch((err) => {
+//     console.log(err); // выведем ошибку в консоль
+//   });
+
+
+/***/ }),
+
 /***/ "./src/components/Card.js":
 /*!********************************!*\
   !*** ./src/components/Card.js ***!
@@ -26,7 +103,7 @@ var Card = /*#__PURE__*/function () {
     this._link = cardData.link;
     this._handleImageClick = handleOpenImagePopup;
     this._handleConfirmDelete = handleConfirmDelete;
-    this._handleDeleteCard = this._handleDeleteCard.bind(this);
+    this.handleDeleteCard = this.handleDeleteCard.bind(this);
     this._handleLikeCard = this._handleLikeCard.bind(this);
   }
   _createClass(Card, [{
@@ -43,7 +120,8 @@ var Card = /*#__PURE__*/function () {
       this._cardImage = this._element.querySelector('.element__image');
       this._cardImageTitle = this._element.querySelector('.element__title');
       this._buttonDeleteCard.addEventListener('click', function () {
-        _this._handleDeleteCard(_this._handleConfirmDelete());
+        _this._handleConfirmDelete();
+        _this._element.classList.add('alert');
       });
       this._buttonLikeCard.addEventListener('click', this._handleLikeCard);
       this._cardImage.addEventListener('click', function () {
@@ -51,9 +129,8 @@ var Card = /*#__PURE__*/function () {
       });
     }
   }, {
-    key: "_handleDeleteCard",
-    value: function _handleDeleteCard() {
-      ;
+    key: "handleDeleteCard",
+    value: function handleDeleteCard() {
       this._element.remove();
       this._element = null;
     }
@@ -275,10 +352,12 @@ var PopupWithConfirmation = /*#__PURE__*/function (_Popup) {
     value: function setEventListeners() {
       var _this = this;
       _get(_getPrototypeOf(PopupWithConfirmation.prototype), "setEventListeners", this).call(this);
-      this._form = this._popup.querySelector('.form');
+      this._form = document.querySelector('.form_confirm');
       this._form.addEventListener("submit", function (event) {
         event.preventDefault();
-        console.log(_this._form);
+        _this._alert = document.querySelector('.alert');
+        _this._alert.remove();
+        _this._alert = null;
         _this.close();
       });
     }
@@ -591,6 +670,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_UserInfo_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/UserInfo.js */ "./src/components/UserInfo.js");
 /* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./index.css */ "./src/pages/index.css");
 /* harmony import */ var _components_PopupWithConfirmation_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/PopupWithConfirmation.js */ "./src/components/PopupWithConfirmation.js");
+/* harmony import */ var _components_Api_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/Api.js */ "./src/components/Api.js");
 
 
 
@@ -601,29 +681,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-//Начальные карточки
-
-//Утилитарные константы должны быть выделены в отдельный файл utils/constants.js
-//Такого нет в задании и в чек листе
-var initialCards = [{
-  name: 'Архыз',
-  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-}, {
-  name: 'Челябинская область',
-  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-}, {
-  name: 'Иваново',
-  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-}, {
-  name: 'Камчатка',
-  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-}, {
-  name: 'Холмогорский район',
-  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-}, {
-  name: 'Байкал',
-  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-}];
+var api = new _components_Api_js__WEBPACK_IMPORTED_MODULE_9__["default"]({
+  url: 'https://mesto.nomoreparties.co/v1/cohort-64',
+  headers: {
+    authorization: 'e3cda1d4-1903-40f4-b79f-2419b5c60311',
+    'Content-Type': 'application/json'
+  }
+});
 var validationConfig = {
   formSelector: '.form',
   inputSelector: '.form__item',
@@ -648,6 +712,11 @@ var formPopupProfile = popupProfile.querySelector('.form_profile');
 //Данные профиля
 var profileName = document.querySelector('.profile__name');
 var profileAbout = document.querySelector('.profile__about');
+api.getProfileData().then(function (data) {
+  console.log(data);
+  profileName.textContent = data.name;
+  profileAbout.textContent = data.about;
+});
 var classPopupBibImage = new _components_PopupWithImage_js__WEBPACK_IMPORTED_MODULE_5__["default"](popupBigImage);
 classPopupBibImage.setEventListeners();
 function handleOpenImagePopup(name, link) {
@@ -660,6 +729,7 @@ var popupWithConfirmation = function popupWithConfirmation(item) {
   form.setEventListeners();
   return form;
 };
+var formPopupConfirm = popupConfirm.querySelector('.form_confirm');
 var popupFormConfirm = popupWithConfirmation(popupConfirm);
 function handleConfirmDelete() {
   popupFormConfirm.open();
@@ -669,16 +739,18 @@ var createCard = function createCard(cardData) {
   var element = newCard.getElement();
   return element;
 };
-
-// Добавление начальных карточек
-var cardsSection = new _components_Section_js__WEBPACK_IMPORTED_MODULE_2__["default"]({
-  items: initialCards,
-  renderer: function renderer(item) {
-    var card = createCard(item);
-    cardsSection.appendItem(card);
-  }
-}, '.elements__list');
-cardsSection.renderItems();
+api.getInitialCards().then(function (data) {
+  console.log(data);
+  // Добавление начальных карточек
+  var cardsSection = new _components_Section_js__WEBPACK_IMPORTED_MODULE_2__["default"]({
+    items: data,
+    renderer: function renderer(item) {
+      var card = createCard(item);
+      cardsSection.appendItem(card);
+    }
+  }, '.elements__list');
+  cardsSection.renderItems();
+});
 
 // Валидация форм
 var initFormValidator = function initFormValidator(formElement) {
@@ -698,6 +770,9 @@ var createPopupCards = function createPopupCards(item) {
 };
 function handleProfileFormSubmit(data) {
   userInfo.setUserInfo(data);
+  api.setProfileData(data).then(function (data) {
+    console.log(data);
+  });
 }
 var createPopupProfiles = function createPopupProfiles(item) {
   var form = new _components_PopupWithForm_js__WEBPACK_IMPORTED_MODULE_4__["default"](item, handleProfileFormSubmit);
