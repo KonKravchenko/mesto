@@ -20,14 +20,13 @@
   flex-direction: column;
   box-sizing: border-box;
   overflow: hidden;
-  position: relative;
-  border: none;
+   border: none;
 }
 
 .avatar:hover .profile__avatar_overlay {
   display: block;
   background: rgba(0, 0, 0, 0.6);
-  /* Настройка цвета и прозрачности для блока с заголовком при наведении */
+
 }
 
 .profile__avatar_edit-button {
