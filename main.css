@@ -77,7 +77,7 @@
 /*!*********************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/element/__like/element__like.css ***!
   \*********************************************************************************************************************************************************************/
-.element__like{background-color:transparent;background-image:url(87ed371465c7a6a1cd01.svg);background-position:50%;background-repeat:no-repeat;background-size:cover;border:none;box-sizing:border-box;height:min(100%,19px);min-width:22px}.element__like:hover{cursor:pointer;opacity:.5}.element__like:active{background-image:url(fe17a515669479b1e649.svg)}
+.section__like{align-items:center;border:none;flex-direction:column;height:100%;row-gap:3px}.number__like,.section__like{display:flex;margin:0;padding:0}.number__like{background-position:50%;color:#000;font-family:Inter;font-size:13px;font-style:normal;font-weight:400;height:13px;line-height:16px;text-align:center;width:10px}.element__like{background-color:transparent;background-image:url(87ed371465c7a6a1cd01.svg);background-position:50%;background-repeat:no-repeat;background-size:cover;border:none;box-sizing:border-box;display:flex;height:min(100%,19px);min-width:22px}.element__like:hover{cursor:pointer;opacity:.5}.element__like:active{background-image:url(fe17a515669479b1e649.svg)}
 /*!************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/element/__like/_active/element__like_active.css ***!
   \************************************************************************************************************************************************************************************/
@@ -93,7 +93,7 @@
 /*!***********************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/element/__group/element__group.css ***!
   \***********************************************************************************************************************************************************************/
-.element__group{align-items:center;box-sizing:border-box;display:flex;flex-direction:row;height:24%;justify-content:space-between;margin:0;max-width:282px;padding:25px 15px 25px 21px}
+.element__group{align-items:center;border:none;box-sizing:border-box;display:flex;flex-direction:row;height:26%;justify-content:space-between;margin:0;max-width:282px;padding:22px 15px 22px 21px}
 /*!***********************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/element/__image/element__image.css ***!
   \***********************************************************************************************************************************************************************/

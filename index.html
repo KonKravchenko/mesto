@@ -42,6 +42,18 @@
         </ul>
       </section>
 
+      <!-- Удаление карточки -->
+      <section class="popup popup_confirm">
+        <div class="popup__container">
+          <form class="form form_confirm" name="popup_form_confirm" novalidate>
+            <h2 class="form__title">Вы уверены?</h2>
+            <button class="form__button form__button_disabled" type="submit" name="button" value="Да"
+              aria-label="уверенность" disabled="true">Да</button>
+          </form>
+          <button class="popup__close" type="button" aria-label="закрыть форму"></button>
+        </div>
+      </section>
+
       <!--Редактирование профиля-->
       <section class="popup popup_profile">
         <div class="popup__container">
@@ -75,7 +87,7 @@
           <form class="form form_avatar" name="popup_form_avatar" novalidate>
             <h2 class="form__title">Обновить аватар</h2>
             <div class="form__input">
-              <input class="form__item" type="url" name="link" placeholder="Ссылка на картинку" autocomplete="off"
+              <input class="form__item" type="url" name="avatar" placeholder="Ссылка на картинку" autocomplete="off"
                 required>
               <span class="form__item-error"></span>
             </div>
@@ -113,16 +125,7 @@
         </div>
       </section>
 
-      <!-- Удаление карточки -->
-      <section class="popup popup_confirm">
-        <div class="popup__container">
-          <form class="form form_confirm" name="popup_form_confirm">
-            <h2 class="form__title">Вы уверены?</h2>
-            <button class="form__button" type="submit" name="button" value="Уверен" aria-label="уверенность">Да</button>
-          </form>
-          <button class="popup__close" type="button" aria-label="закрыть форму"></button>
-        </div>
-      </section>
+
 
 
       <!--Большая картинка-->
@@ -148,7 +151,11 @@
       <img class="element__image" src="#" alt="">
       <div class="element__group">
         <h2 class="element__title"></h2>
-        <button class="element__like" type="button" aria-label="нравится/не нравится"></button>
+        <div class="section__like">
+          <button class="element__like" type="button" aria-label="нравится/не нравится"></button>
+          <p class="number__like">0</p>
+        </div>
+
       </div>
 
     </li>
