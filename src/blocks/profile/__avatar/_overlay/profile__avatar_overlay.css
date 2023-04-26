@@ -1,0 +1,48 @@
+.profile__avatar_overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: background 0.5s ease;
+  border-radius: 100px;
+}
+
+.avatar {
+  position: relative;
+  border-radius: 100px;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  width: min(100vw, 120px);
+  height: min(100vh, 120px);
+  list-style: none;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+  border: none;
+}
+
+.avatar:hover .profile__avatar_overlay {
+  display: block;
+  background: rgba(0, 0, 0, 0.6);
+  /* Настройка цвета и прозрачности для блока с заголовком при наведении */
+}
+
+.profile__avatar_edit-button {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  transition: opacity .35s ease;
+  background-color: transparent;
+  border: none;
+  border-radius: 100px;
+}
+
+.avatar:hover .profile__avatar_edit-button {
+  opacity: 1;
+}
