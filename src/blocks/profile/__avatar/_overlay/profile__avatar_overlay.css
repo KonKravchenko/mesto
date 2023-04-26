@@ -1,4 +1,4 @@
-.profile__avatar_overlay {
+.avatar__overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -23,13 +23,13 @@
    border: none;
 }
 
-.avatar:hover .profile__avatar_overlay {
+.avatar:hover .avatar__overlay {
   display: block;
   background: rgba(0, 0, 0, 0.6);
 
 }
 
-.profile__avatar_edit-button {
+.avatar__edit-button {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -42,6 +42,6 @@
   border-radius: 100px;
 }
 
-.avatar:hover .profile__avatar_edit-button {
+.avatar:hover .avatar__edit-button {
   opacity: 1;
 }

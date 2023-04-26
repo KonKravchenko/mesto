@@ -3,7 +3,7 @@ export default class Card {
 
     this._name = data.name;
     this._link = data.link;
-    this._likes = data.likes.length;
+    this._likes = data.likes;
     this._id = data._id;
     this._userId = data.userId;
     this._ownerId = data.ownerId;
@@ -25,7 +25,7 @@ export default class Card {
 
   isLiked() {
     const userLikedCard = this._likes.find(user => user._id === this._userId)
-console.log('здесь', this._userId)
+
     return userLikedCard
   }
 
@@ -46,7 +46,7 @@ console.log('здесь', this._userId)
     this._cardImage = this._element.querySelector('.element__image');
     this._cardImageTitle = this._element.querySelector('.element__title');
     this._numberLike = this._element.querySelector('.number__like');
-    this._numberLike.textContent = this._likes;
+    this._numberLike.textContent = this._likes.length;
 
 
     this._cardImage.addEventListener('click', () => {

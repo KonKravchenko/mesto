@@ -32,7 +32,7 @@ const validationConfig = {
 };
 
 // кнопка открытия формы редактирования Аватара
-const popupOpenButtonFormEditAvatar = document.querySelector('.profile__avatar_edit-button');//кнопка
+const popupOpenButtonFormEditAvatar = document.querySelector('.avatar__edit-button');//кнопка
 
 //кнопка открытия формы редактирования Профиля
 const popupOpenButtonFormEditProfile = document.querySelector('.profile__edit-button');//кнопка
@@ -67,7 +67,7 @@ const inputAbout = formPopupProfile.querySelector('.form__item_bottom');
 //Данные профиля
 const profileName = document.querySelector('.profile__name');
 const profileAbout = document.querySelector('.profile__about');
-const profileAvatar = document.querySelector('.profile__avatar');
+const profileAvatar = document.querySelector('.avatar__image');
 
 api.getProfileData()
   .then((data) => {
