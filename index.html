@@ -19,9 +19,9 @@
       <section class="profile">
         <div class="profile__info">
           <div class="avatar">
-            <img class="profile__avatar" src="8e94371e9d2475fdfc60.jpg" alt="Жак-Ив Кусто">
-            <div class="profile__avatar_overlay"></div>
-            <button class="profile__avatar_edit-button" arial-label="изменить аватар" type="button">
+            <img class="avatar__image" src="8e94371e9d2475fdfc60.jpg" alt="Жак-Ив Кусто">
+            <div class="avatar__overlay"></div>
+            <button class="avatar__edit-button" arial-label="изменить аватар" type="button">
               <img src="a086f758840ae814ecde.svg">
             </button>
           </div>
@@ -125,9 +125,6 @@
         </div>
       </section>
 
-
-
-
       <!--Большая картинка-->
       <section class="popup popup_big-image">
         <div class="popup__big-image-container">
@@ -147,7 +144,7 @@
   <template class="item-template">
 
     <li class="element">
-      <button class="element__trash" type="button" aria-label="Удалить"></button>
+      <button class="element__trash hidden" type="button" aria-label="Удалить"></button>
       <img class="element__image" src="#" alt="">
       <div class="element__group">
         <h2 class="element__title"></h2>

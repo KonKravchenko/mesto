@@ -50,6 +50,15 @@ var Api = /*#__PURE__*/function () {
       }).then(this._checkResponse);
     }
   }, {
+    key: "setProfileAvatar",
+    value: function setProfileAvatar(avatar) {
+      return fetch("".concat(this.url, "/users/me/avatar"), {
+        method: 'PATCH',
+        headers: this.headers,
+        body: JSON.stringify(avatar)
+      }).then(this._checkResponse);
+    }
+  }, {
     key: "getInitialCards",
     value: function getInitialCards() {
       return fetch("".concat(this.url, "/cards"), {
@@ -70,6 +79,13 @@ var Api = /*#__PURE__*/function () {
     value: function deleteCard(id) {
       return fetch("".concat(this.url, "/cards/").concat(id), {
         method: 'DELETE',
+        headers: this.headers
+      }).then(this._checkResponse);
+    }
+  }, {
+    key: "getLike",
+    value: function getLike() {
+      return fetch("".concat(this.url, "/cards/").concat(id, "/likes"), {
         headers: this.headers
       }).then(this._checkResponse);
     }
@@ -111,17 +127,19 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
 function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 var Card = /*#__PURE__*/function () {
-  function Card(templateSelector, data, handleOpenImagePopup, handleDeleteClick, handleLikeClick) {
+  function Card(templateSelector, data, userId, handleOpenImagePopup, handleDeleteClick, handleLikeClick) {
     _classCallCheck(this, Card);
+    _defineProperty(this, "ownerId", void 0);
     this._name = data.name;
     this._link = data.link;
-    this._likes = data.likes.length;
-    this._id = data._id;
-    this._userId = data.userId;
-    this._ownerId = data.ownerId;
+    this._likes = data.likes;
+    this._id = data.id;
+    this._userId = userId;
+    this._ownerId = data.owner._id;
     this._templateSelector = templateSelector;
     this._handleImageClick = handleOpenImagePopup;
     this._handleDeleteClick = handleDeleteClick;
@@ -139,31 +157,23 @@ var Card = /*#__PURE__*/function () {
       var userLikedCard = this._likes.find(function (user) {
         return user._id === _this._userId;
       });
-      console.log('здесь', this._userId);
       return userLikedCard;
     }
   }, {
     key: "deleteCard",
     value: function deleteCard() {
-      this._element.remove(this._id);
+      this._element.remove();
       this._element = null;
     }
   }, {
     key: "setLikes",
     value: function setLikes() {
-      this._buttonLikeCard.classList.toggle('element__like_active');
-      console.log('работаю   setLikes', this._id);
+      this._numberLike.textContent = this._likes.length;
     }
   }, {
     key: "_addEventListeners",
     value: function _addEventListeners() {
       var _this2 = this;
-      this._buttonDeleteCard = this._element.querySelector('.element__trash');
-      this._buttonLikeCard = this._element.querySelector('.element__like');
-      this._cardImage = this._element.querySelector('.element__image');
-      this._cardImageTitle = this._element.querySelector('.element__title');
-      this._numberLike = this._element.querySelector('.number__like');
-      this._numberLike.textContent = this._likes;
       this._cardImage.addEventListener('click', function () {
         _this2._handleImageClick(_this2._name, _this2._link);
       });
@@ -173,16 +183,48 @@ var Card = /*#__PURE__*/function () {
       });
       this._buttonLikeCard.addEventListener('click', function () {
         _this2._handleLikeClick(_this2._id);
+        _this2._buttonLikeCard.classList.toggle('element__like_active');
       });
+    }
+  }, {
+    key: "_check",
+    value: function _check() {
+      if (this._userId === this._ownerId) {
+        console.log(true);
+        this._buttonDeleteCard.classList.remove('hidden');
+      } else {
+        console.log('не совпадает');
+      }
     }
   }, {
     key: "getElement",
     value: function getElement() {
       this._element = this._getElementFromTemplate();
+      this._buttonDeleteCard = this._element.querySelector('.element__trash');
+      this._buttonLikeCard = this._element.querySelector('.element__like');
+      this._cardImage = this._element.querySelector('.element__image');
+      this._cardImageTitle = this._element.querySelector('.element__title');
+      this._numberLike = this._element.querySelector('.number__like');
+      this._check(); //
+      this.setLikes();
       this._addEventListeners();
+      // const ownerId = this._ownerId
+      console.log('getElement Card userId', this._userId);
+      console.log('getElement card OwnerId', this._ownerId);
+
+      // console.log(this._userId)
+
       this._cardImageTitle.textContent = this._name;
       this._cardImage.alt = this._name;
       this._cardImage.src = this._link;
+
+      // Должна производится проверка равенства id текущего
+      // пользователя и создателя карточки. Это нужно для того,
+      // чтобы убрать кнопку удаления, если текущий пользователь
+      // не является владельцем, так как только владелец может
+      // удалить карточку. То есть, если id пользователя не равен
+      // id владельца необходимо спрятать кнопку удаления
+
       return this._element;
     }
   }]);
@@ -366,8 +408,6 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
 function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
-function _get() { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get.bind(); } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(arguments.length < 3 ? target : receiver); } return desc.value; }; } return _get.apply(this, arguments); }
-function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
@@ -380,26 +420,33 @@ var PopupWithConfirmation = /*#__PURE__*/function (_Popup) {
   _inherits(PopupWithConfirmation, _Popup);
   var _super = _createSuper(PopupWithConfirmation);
   function PopupWithConfirmation(popup) {
+    var _this;
     _classCallCheck(this, PopupWithConfirmation);
-    return _super.call(this, popup);
+    _this = _super.call(this, popup);
+    _this._form = document.querySelector('.form_confirm');
+    return _this;
   }
   _createClass(PopupWithConfirmation, [{
-    key: "submitHandler",
-    value: function submitHandler() {
-      var _this = this;
-      this._form = document.querySelector('.form_confirm');
-      this._form.addEventListener("submit", function (event) {
-        event.preventDefault();
-        console.log('changeSubmitHandler');
-        _this.close();
-      });
+    key: "setCallback",
+    value: function setCallback(submitCb) {
+      this._handleSubmit = submitCb;
     }
   }, {
-    key: "setEventListeners",
-    value: function setEventListeners() {
-      _get(_getPrototypeOf(PopupWithConfirmation.prototype), "setEventListeners", this).call(this);
-      console.log('setEventListeners');
+    key: "submitHandler",
+    value: function submitHandler() {
+      var _this2 = this;
+      this._form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        _this2._handleSubmit();
+        console.log('changeSubmitHandler');
+        // this.close()
+      });
     }
+
+    // setEventListeners() {
+    //   super.setEventListeners();
+    //   console.log('setEventListeners')
+    // }
   }]);
   return PopupWithConfirmation;
 }(_Popup_js__WEBPACK_IMPORTED_MODULE_0__["default"]);
@@ -443,6 +490,7 @@ var PopupWithForm = /*#__PURE__*/function (_Popup) {
     _this = _super.call(this, popup);
     _this._handleFormSubmit = submitFormHandler;
     _this._inputList = _this._popup.querySelectorAll(".form__item");
+    _this._form = _this._popup.querySelector('.form');
     return _this;
   }
   _createClass(PopupWithForm, [{
@@ -456,16 +504,19 @@ var PopupWithForm = /*#__PURE__*/function (_Popup) {
       return this._formValues;
     }
   }, {
+    key: "close",
+    value: function close() {
+      _get(_getPrototypeOf(PopupWithForm.prototype), "close", this).call(this);
+      this._form.reset();
+    }
+  }, {
     key: "setEventListeners",
     value: function setEventListeners() {
       var _this3 = this;
       _get(_getPrototypeOf(PopupWithForm.prototype), "setEventListeners", this).call(this);
-      this._form = this._popup.querySelector('.form');
       this._form.addEventListener("submit", function (event) {
         event.preventDefault();
         _this3._handleFormSubmit(_this3._getInputValues());
-        _this3.close();
-        _this3._form.reset();
       });
     }
   }]);
@@ -564,9 +615,9 @@ var Section = /*#__PURE__*/function () {
     }
   }, {
     key: "renderItems",
-    value: function renderItems(cards) {
+    value: function renderItems(items) {
       var _this = this;
-      cards.forEach(function (item) {
+      items.forEach(function (item) {
         _this._renderer(item);
       });
     }
@@ -596,26 +647,44 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 var UserInfo = /*#__PURE__*/function () {
   function UserInfo(_ref) {
     var name = _ref.name,
-      about = _ref.about;
+      about = _ref.about,
+      avatar = _ref.avatar,
+      _id = _ref._id;
     _classCallCheck(this, UserInfo);
     this._name = name;
     this._about = about;
+    this._avatar = avatar;
+    this._userId = _id;
   }
   _createClass(UserInfo, [{
     key: "getUserInfo",
     value: function getUserInfo() {
       return {
         name: this._name.textContent,
-        about: this._about.textContent
+        about: this._about.textContent,
+        avatar: this._avatar.link
       };
     }
   }, {
     key: "setUserInfo",
     value: function setUserInfo(_ref2) {
       var name = _ref2.name,
-        about = _ref2.about;
-      this._name.textContent = name;
-      this._about.textContent = about;
+        about = _ref2.about,
+        _id = _ref2._id;
+      this._name = name;
+      this._about = about;
+      this._userId = _id;
+    }
+  }, {
+    key: "getUserId",
+    value: function getUserId() {
+      return this._userId;
+    }
+  }, {
+    key: "setUserAvatar",
+    value: function setUserAvatar(_ref3) {
+      var avatar = _ref3.avatar;
+      this._avatar.link = avatar;
     }
   }]);
   return UserInfo;
@@ -749,7 +818,7 @@ var validationConfig = {
 };
 
 // кнопка открытия формы редактирования Аватара
-var popupOpenButtonFormEditAvatar = document.querySelector('.profile__avatar_edit-button'); //кнопка
+var popupOpenButtonFormEditAvatar = document.querySelector('.avatar__edit-button'); //кнопка
 
 //кнопка открытия формы редактирования Профиля
 var popupOpenButtonFormEditProfile = document.querySelector('.profile__edit-button'); //кнопка
@@ -772,51 +841,61 @@ var inputAbout = formPopupProfile.querySelector('.form__item_bottom');
 //Данные профиля
 var profileName = document.querySelector('.profile__name');
 var profileAbout = document.querySelector('.profile__about');
-var profileAvatar = document.querySelector('.profile__avatar');
-api.getProfileData().then(function (data) {
-  profileName.textContent = data.name;
-  profileAbout.textContent = data.about;
-  profileAvatar.src = data.avatar;
+var profileAvatar = document.querySelector('.avatar__image');
+var userInfo = new _components_UserInfo_js__WEBPACK_IMPORTED_MODULE_6__["default"]({
+  name: profileName,
+  about: profileAbout,
+  avatar: profileAvatar
+});
+Promise.all([api.getProfileData(), api.getInitialCards()]).then(function (_ref) {
+  var _ref2 = _slicedToArray(_ref, 2),
+    user = _ref2[0],
+    cards = _ref2[1];
+  userInfo.getUserInfo(userInfo.setUserInfo(user), profileName.textContent = user.name, profileAbout.textContent = user.about, profileAvatar.src = user.avatar);
+  userCards.renderItems(cards);
 });
 function createCard(data) {
-  var cardElement = new _components_Card_js__WEBPACK_IMPORTED_MODULE_0__["default"]('.item-template', data, handleOpenImagePopup, function (id) {
-    confirmDeleteForm.open(uberSubmit(id), cardElement.deleteCard(id));
+  var cardElement = new _components_Card_js__WEBPACK_IMPORTED_MODULE_0__["default"]('.item-template', data, userInfo.getUserId(), handleOpenImagePopup, function (id) {
+    handleDeleteCard;
   }, function (id) {
     if (cardElement.isLiked()) {
       api.deleteLike(id).then(function (res) {
         cardElement.setLikes(res.likes);
+      }).catch(function (err) {
+        return console.log(err);
       });
     } else {
       api.addLike(id).then(function (res) {
         cardElement.setLikes(res.likes);
+      }).catch(function (err) {
+        return console.log(err);
       });
     }
-  });
+  }
+  // () => { userInfo.getUserId() }
+  );
+
   return cardElement.getElement();
 }
-function uberSubmit(id) {
-  confirmDeleteForm.submitHandler(api.deleteCard(id).then(function () {
-    console.log(id);
-  })), confirmDeleteForm.close();
-}
-;
+// const userInfo = new UserInfo({})
+
 var confirmDeleteForm = new _components_PopupWithConfirmation_js__WEBPACK_IMPORTED_MODULE_7__["default"](popupConfirm);
 confirmDeleteForm.setEventListeners();
+var handleDeleteCard = function handleDeleteCard() {
+  // Здесь вызываем метод Api, а также располагаем
+  // блоки then и catch. В then удаляется карточка из
+  // разметки и закрывается попап
+  api.deleteCard().then(function () {
+    return cardElement.deleteCard();
+  }, confirmDeleteForm.close()).catch(err = console.log(err));
+};
+confirmDeleteForm.setCallback(handleDeleteCard);
 var userCards = new _components_Section_js__WEBPACK_IMPORTED_MODULE_2__["default"]({
-  data: [""],
   renderer: function renderer(item) {
     var card = createCard(item);
     userCards.appendItem(card);
   }
 }, '.elements__list');
-Promise.all([api.getProfileData(), api.getInitialCards()]).then(function (_ref) {
-  var _ref2 = _slicedToArray(_ref, 2),
-    user = _ref2[0],
-    cards = _ref2[1];
-  userInfo.getUserInfo(user.name, user.about);
-  console.log(cards);
-  userCards.renderItems(cards);
-});
 
 // Валидация форм
 var initFormValidator = function initFormValidator(formElement) {
@@ -831,13 +910,16 @@ var validationFormAvatar = initFormValidator(formPopupAvatar);
 var validationFormProfile = initFormValidator(formPopupProfile);
 // Валидация формы добавления карточки
 var validationFormCard = initFormValidator(formPopupCard);
-var validationFormConfirm = initFormValidator(formPopupConfirm);
+
+// const validationFormConfirm = initFormValidator(formPopupConfirm);
 
 // Обработчик сабмита изменения Аватара
 function handleAvatarFormSubmit(data) {
   console.log(data);
-  api.setProfileAvatar(data);
-  profileAvatar.src = data.avatar;
+  api.setProfileAvatar(data).then(function (data) {
+    userInfo.setUserAvatar(data);
+    popupFormAvatar.close();
+  });
 }
 ;
 
@@ -850,16 +932,12 @@ var createPopupAvatar = function createPopupAvatar(item) {
 var popupFormAvatar = createPopupAvatar(popupAvatar);
 
 // Вызов класса данных профиля
-var userInfo = new _components_UserInfo_js__WEBPACK_IMPORTED_MODULE_6__["default"]({
-  name: profileName,
-  about: profileAbout
-});
 
 // Обработчик сабмита изменения данных профиля
 function handleProfileFormSubmit(data) {
-  userInfo.setUserInfo(data);
   api.setProfileData(data).then(function (data) {
-    console.log(data);
+    console.log(data), userInfo.setUserInfo(data);
+    popupFormProfile.close();
   });
 }
 
@@ -873,9 +951,10 @@ var popupFormProfile = createPopupProfiles(popupProfile);
 
 // Обработчик сабмита формы создания карточки
 function handleCardFormSubmit(data) {
-  userCards.prependItem(createCard(data));
   api.setNewCard(data).then(function (data) {
+    userCards.prependItem(createCard(data));
     console.log(data);
+    popupFormCard.close();
   });
 }
 ;
