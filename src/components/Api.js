@@ -28,6 +28,14 @@ export default class Api {
       .then(this._checkResponse);
   }
 
+  setProfileAvatar(avatar) {
+    return fetch(`${this.url}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: this.headers,
+      body: JSON.stringify(avatar)
+    })
+    .then(this._checkResponse);
+  }
 
   getInitialCards() {
     return fetch(`${this.url}/cards`, {
@@ -52,6 +60,12 @@ export default class Api {
     })
       .then(this._checkResponse);
   }
+getLike(){
+return fetch(`${this.url}/cards/${id}/likes`, {
+  headers: this.headers,
+})
+  .then(this._checkResponse);
+}
 
   addLike(id) {
     return fetch(`${this.url}/cards/${id}/likes`, {
