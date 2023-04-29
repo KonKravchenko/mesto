@@ -84,7 +84,7 @@ var Api = /*#__PURE__*/function () {
     }
   }, {
     key: "getLike",
-    value: function getLike() {
+    value: function getLike(id) {
       return fetch("".concat(this.url, "/cards/").concat(id, "/likes"), {
         headers: this.headers
       }).then(this._checkResponse);
@@ -131,15 +131,18 @@ function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key i
 function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
 function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 var Card = /*#__PURE__*/function () {
-  function Card(templateSelector, data, userId, handleOpenImagePopup, handleDeleteClick, handleLikeClick) {
+  function Card(templateSelector, _data, userId, handleOpenImagePopup, handleDeleteClick, handleLikeClick) {
+    var _this = this;
     _classCallCheck(this, Card);
-    _defineProperty(this, "ownerId", void 0);
-    this._name = data.name;
-    this._link = data.link;
-    this._likes = data.likes;
-    this._id = data.id;
+    _defineProperty(this, "setLikes", function (data) {
+      return _this._numberLike.textContent = data.likes.length;
+    });
+    this._name = _data.name;
+    this._link = _data.link;
+    this._likes = _data.likes;
+    this._id = _data._id;
     this._userId = userId;
-    this._ownerId = data.owner._id;
+    this._ownerId = _data.owner._id;
     this._templateSelector = templateSelector;
     this._handleImageClick = handleOpenImagePopup;
     this._handleDeleteClick = handleDeleteClick;
@@ -153,11 +156,22 @@ var Card = /*#__PURE__*/function () {
   }, {
     key: "isLiked",
     value: function isLiked() {
-      var _this = this;
-      var userLikedCard = this._likes.find(function (user) {
-        return user._id === _this._userId;
+      var _this2 = this;
+      return this._likes.find(function (user) {
+        return user._id === _this2._userId;
       });
-      return userLikedCard;
+    }
+  }, {
+    key: "_checkLike",
+    value: function _checkLike() {
+      var _this3 = this;
+      if (this._likes.find(function (user) {
+        return user._id === _this3._userId;
+      })) {
+        this.putLike();
+      } else {
+        this.removeLike();
+      }
     }
   }, {
     key: "deleteCard",
@@ -166,34 +180,43 @@ var Card = /*#__PURE__*/function () {
       this._element = null;
     }
   }, {
-    key: "setLikes",
-    value: function setLikes() {
-      this._numberLike.textContent = this._likes.length;
+    key: "_getLikes",
+    value: function _getLikes() {
+      return this._numberLike.textContent = this._likes.length;
     }
   }, {
     key: "_addEventListeners",
     value: function _addEventListeners() {
-      var _this2 = this;
+      var _this4 = this;
       this._cardImage.addEventListener('click', function () {
-        _this2._handleImageClick(_this2._name, _this2._link);
+        _this4._handleImageClick(_this4._name, _this4._link);
       });
       this._buttonDeleteCard.addEventListener('click', function () {
-        _this2._handleDeleteClick(_this2._id);
-        console.log('здесь', _this2._id);
+        _this4._handleDeleteClick(_this4._id);
+        console.log('здесь', _this4._id);
       });
       this._buttonLikeCard.addEventListener('click', function () {
-        _this2._handleLikeClick(_this2._id);
-        _this2._buttonLikeCard.classList.toggle('element__like_active');
+        _this4._handleLikeClick(_this4._id);
+        console.log('клик', _this4._likes.length);
       });
     }
   }, {
-    key: "_check",
-    value: function _check() {
+    key: "putLike",
+    value: function putLike() {
+      this._buttonLikeCard.classList.add('element__like_active');
+    }
+  }, {
+    key: "removeLike",
+    value: function removeLike() {
+      this._buttonLikeCard.classList.remove('element__like_active');
+    }
+  }, {
+    key: "_checkCardId",
+    value: function _checkCardId() {
       if (this._userId === this._ownerId) {
-        console.log(true);
+        // console.log(true)
         this._buttonDeleteCard.classList.remove('hidden');
-      } else {
-        console.log('не совпадает');
+      } else {// console.log('не совпадает')
       }
     }
   }, {
@@ -204,27 +227,19 @@ var Card = /*#__PURE__*/function () {
       this._buttonLikeCard = this._element.querySelector('.element__like');
       this._cardImage = this._element.querySelector('.element__image');
       this._cardImageTitle = this._element.querySelector('.element__title');
-      this._numberLike = this._element.querySelector('.number__like');
-      this._check(); //
-      this.setLikes();
+      this._numberLike = this._element.querySelector('.element__like-number');
+      this._checkCardId();
+      this._checkLike();
+      this._getLikes();
+      this.isLiked();
       this._addEventListeners();
-      // const ownerId = this._ownerId
-      console.log('getElement Card userId', this._userId);
-      console.log('getElement card OwnerId', this._ownerId);
 
-      // console.log(this._userId)
+      // console.log('getElement Card userId', this._userId)
+      // console.log('getElement card OwnerId', this._ownerId)
 
       this._cardImageTitle.textContent = this._name;
       this._cardImage.alt = this._name;
       this._cardImage.src = this._link;
-
-      // Должна производится проверка равенства id текущего
-      // пользователя и создателя карточки. Это нужно для того,
-      // чтобы убрать кнопку удаления, если текущий пользователь
-      // не является владельцем, так как только владелец может
-      // удалить карточку. То есть, если id пользователя не равен
-      // id владельца необходимо спрятать кнопку удаления
-
       return this._element;
     }
   }]);
@@ -428,8 +443,8 @@ var PopupWithConfirmation = /*#__PURE__*/function (_Popup) {
   }
   _createClass(PopupWithConfirmation, [{
     key: "setCallback",
-    value: function setCallback(submitCb) {
-      this._handleSubmit = submitCb;
+    value: function setCallback(functionDeleteCard) {
+      this._handleSubmit = functionDeleteCard;
     }
   }, {
     key: "submitHandler",
@@ -439,14 +454,8 @@ var PopupWithConfirmation = /*#__PURE__*/function (_Popup) {
         event.preventDefault();
         _this2._handleSubmit();
         console.log('changeSubmitHandler');
-        // this.close()
       });
     }
-
-    // setEventListeners() {
-    //   super.setEventListeners();
-    //   console.log('setEventListeners')
-    // }
   }]);
   return PopupWithConfirmation;
 }(_Popup_js__WEBPACK_IMPORTED_MODULE_0__["default"]);
@@ -491,6 +500,7 @@ var PopupWithForm = /*#__PURE__*/function (_Popup) {
     _this._handleFormSubmit = submitFormHandler;
     _this._inputList = _this._popup.querySelectorAll(".form__item");
     _this._form = _this._popup.querySelector('.form');
+    _this._submitButton = _this._form.querySelector('.form__button');
     return _this;
   }
   _createClass(PopupWithForm, [{
@@ -508,6 +518,15 @@ var PopupWithForm = /*#__PURE__*/function (_Popup) {
     value: function close() {
       _get(_getPrototypeOf(PopupWithForm.prototype), "close", this).call(this);
       this._form.reset();
+    }
+  }, {
+    key: "renderLoading",
+    value: function renderLoading(isLoading) {
+      if (isLoading) {
+        this._submitButton.textContent = "".concat(this._submitButton.textContent, "...");
+      } else {
+        this._submitButton.textContent = "".concat(this._submitButton.textContent);
+      }
     }
   }, {
     key: "setEventListeners",
@@ -662,7 +681,7 @@ var UserInfo = /*#__PURE__*/function () {
       return {
         name: this._name.textContent,
         about: this._about.textContent,
-        avatar: this._avatar.link
+        avatar: this._avatar.src
       };
     }
   }, {
@@ -671,8 +690,8 @@ var UserInfo = /*#__PURE__*/function () {
       var name = _ref2.name,
         about = _ref2.about,
         _id = _ref2._id;
-      this._name = name;
-      this._about = about;
+      this._name.textContent = name;
+      this._about.textContent = about;
       this._userId = _id;
     }
   }, {
@@ -684,7 +703,7 @@ var UserInfo = /*#__PURE__*/function () {
     key: "setUserAvatar",
     value: function setUserAvatar(_ref3) {
       var avatar = _ref3.avatar;
-      this._avatar.link = avatar;
+      this._avatar.src = avatar;
     }
   }]);
   return UserInfo;
@@ -826,70 +845,101 @@ var popupOpenButtonFormEditProfile = document.querySelector('.profile__edit-butt
 //кнопка открытия формы добавления Карточки
 var popupOpenButtonFormAddCard = document.querySelector('.profile__add-button'); //кнопка
 
+// ---Аватар---
+
+// попап
 var popupAvatar = document.querySelector('.popup_avatar');
+// форма
+var formPopupAvatar = popupAvatar.querySelector('.form_avatar');
+// сабмит
+var submitBtnFormPopupAvatar = formPopupAvatar.querySelector('.form__button');
+
+// ---Профиль---
 var popupProfile = document.querySelector('.popup_profile');
+// форма
+var formPopupProfile = popupProfile.querySelector('.form_profile');
+// инпуты
+var inputName = formPopupProfile.querySelector('.form__item');
+var inputAbout = formPopupProfile.querySelector('.form__item_bottom');
+// сабмит
+var submitBtnFormPopupProfile = formPopupProfile.querySelector('.form__button');
+
+// ---Карточка---
+
+// попап
 var popupCard = document.querySelector('.popup_card');
 var popupBigImage = document.querySelector('.popup_big-image');
 var popupConfirm = document.querySelector('.popup_confirm');
-var formPopupAvatar = popupAvatar.querySelector('.form_avatar');
-var formPopupProfile = popupProfile.querySelector('.form_profile');
+// форма
 var formPopupCard = popupCard.querySelector('.form_card');
-var formPopupConfirm = popupConfirm.querySelector('.form_confirm');
-var inputName = formPopupProfile.querySelector('.form__item');
-var inputAbout = formPopupProfile.querySelector('.form__item_bottom');
+// сабмит
+var submitBtnFormPopupCard = formPopupCard.querySelector('.form__button');
 
-//Данные профиля
+// ---Данные профиля---
 var profileName = document.querySelector('.profile__name');
 var profileAbout = document.querySelector('.profile__about');
 var profileAvatar = document.querySelector('.avatar__image');
+
+// ---Вызов класса UserInfo---
 var userInfo = new _components_UserInfo_js__WEBPACK_IMPORTED_MODULE_6__["default"]({
   name: profileName,
   about: profileAbout,
   avatar: profileAvatar
 });
+
+// ---Получение и установка данных---
 Promise.all([api.getProfileData(), api.getInitialCards()]).then(function (_ref) {
   var _ref2 = _slicedToArray(_ref, 2),
     user = _ref2[0],
     cards = _ref2[1];
-  userInfo.getUserInfo(userInfo.setUserInfo(user), profileName.textContent = user.name, profileAbout.textContent = user.about, profileAvatar.src = user.avatar);
+  userInfo.setUserInfo(user);
+  profileName.textContent = user.name, profileAbout.textContent = user.about, profileAvatar.src = user.avatar;
   userCards.renderItems(cards);
+}).catch(function (err) {
+  console.log("\u041E\u0448\u0438\u0431\u043A\u0430: ".concat(err));
 });
+
+// ---Функция создания Карточки---
 function createCard(data) {
   var cardElement = new _components_Card_js__WEBPACK_IMPORTED_MODULE_0__["default"]('.item-template', data, userInfo.getUserId(), handleOpenImagePopup, function (id) {
-    handleDeleteCard;
+    confirmDeleteForm.open();
+    confirmDeleteForm.setCallback(function () {
+      api.deleteCard(id).then(function () {
+        cardElement.deleteCard();
+        confirmDeleteForm.close();
+      }).catch(function (err) {
+        console.log("\u041E\u0448\u0438\u0431\u043A\u0430: ".concat(err));
+      });
+    });
   }, function (id) {
     if (cardElement.isLiked()) {
-      api.deleteLike(id).then(function (res) {
-        cardElement.setLikes(res.likes);
+      api.deleteLike(id).then(function (data) {
+        cardElement.removeLike();
+        cardElement.setLikes(data);
+        console.log('удалить', data.likes.length);
       }).catch(function (err) {
-        return console.log(err);
+        console.log("\u041E\u0448\u0438\u0431\u043A\u0430: ".concat(err));
       });
     } else {
-      api.addLike(id).then(function (res) {
-        cardElement.setLikes(res.likes);
+      api.addLike(id).then(function (data) {
+        cardElement.putLike();
+        cardElement.setLikes(data);
+        console.log('лайкнуть', data.likes.length);
       }).catch(function (err) {
-        return console.log(err);
+        console.log("\u041E\u0448\u0438\u0431\u043A\u0430: ".concat(err));
       });
     }
-  }
-  // () => { userInfo.getUserId() }
-  );
-
+    return;
+  });
   return cardElement.getElement();
 }
-// const userInfo = new UserInfo({})
 
+// ---Вызов класса формы подтверждения удаления Карточки---
 var confirmDeleteForm = new _components_PopupWithConfirmation_js__WEBPACK_IMPORTED_MODULE_7__["default"](popupConfirm);
 confirmDeleteForm.setEventListeners();
-var handleDeleteCard = function handleDeleteCard() {
-  // Здесь вызываем метод Api, а также располагаем
-  // блоки then и catch. В then удаляется карточка из
-  // разметки и закрывается попап
-  api.deleteCard().then(function () {
-    return cardElement.deleteCard();
-  }, confirmDeleteForm.close()).catch(err = console.log(err));
-};
-confirmDeleteForm.setCallback(handleDeleteCard);
+confirmDeleteForm.submitHandler();
+
+// ---Вызов класса Section---
 var userCards = new _components_Section_js__WEBPACK_IMPORTED_MODULE_2__["default"]({
   renderer: function renderer(item) {
     var card = createCard(item);
@@ -897,7 +947,7 @@ var userCards = new _components_Section_js__WEBPACK_IMPORTED_MODULE_2__["default
   }
 }, '.elements__list');
 
-// Валидация форм
+// ---Валидация форм---
 var initFormValidator = function initFormValidator(formElement) {
   var validForm = new _components_FormValidator_js__WEBPACK_IMPORTED_MODULE_1__["default"](validationConfig, formElement);
   validForm.enableValidation();
@@ -911,90 +961,94 @@ var validationFormProfile = initFormValidator(formPopupProfile);
 // Валидация формы добавления карточки
 var validationFormCard = initFormValidator(formPopupCard);
 
-// const validationFormConfirm = initFormValidator(formPopupConfirm);
+// Форма изменения Аватара
+var popupFormAvatar = new _components_PopupWithForm_js__WEBPACK_IMPORTED_MODULE_4__["default"](popupAvatar, handleAvatarFormSubmit);
+popupFormAvatar.setEventListeners();
+
+// Форма изменения данных Профиля
+var popupFormProfile = new _components_PopupWithForm_js__WEBPACK_IMPORTED_MODULE_4__["default"](popupProfile, handleProfileFormSubmit);
+popupFormProfile.setEventListeners();
+
+// Форма создания Карточки
+var popupFormCard = new _components_PopupWithForm_js__WEBPACK_IMPORTED_MODULE_4__["default"](popupCard, handleCardFormSubmit);
+popupFormCard.setEventListeners();
+
+// Попап большой картинки
+var classPopupBibImage = new _components_PopupWithImage_js__WEBPACK_IMPORTED_MODULE_5__["default"](popupBigImage);
+classPopupBibImage.setEventListeners();
+
+// обработчик открытия попапа с большой картинкой
+function handleOpenImagePopup(name, link) {
+  classPopupBibImage.open(name, link);
+}
+;
 
 // Обработчик сабмита изменения Аватара
 function handleAvatarFormSubmit(data) {
-  console.log(data);
+  popupFormAvatar.renderLoading(true);
   api.setProfileAvatar(data).then(function (data) {
     userInfo.setUserAvatar(data);
     popupFormAvatar.close();
+  }).catch(function (err) {
+    console.log("\u041E\u0448\u0438\u0431\u043A\u0430: ".concat(err));
+  }).finally(function () {
+    popupFormAvatar.renderLoading(false);
   });
 }
 ;
 
-// Форма изменения Аватара
-var createPopupAvatar = function createPopupAvatar(item) {
-  var form = new _components_PopupWithForm_js__WEBPACK_IMPORTED_MODULE_4__["default"](item, handleAvatarFormSubmit);
-  form.setEventListeners();
-  return form;
-};
-var popupFormAvatar = createPopupAvatar(popupAvatar);
-
-// Вызов класса данных профиля
-
 // Обработчик сабмита изменения данных профиля
 function handleProfileFormSubmit(data) {
+  popupFormProfile.renderLoading(true);
   api.setProfileData(data).then(function (data) {
     console.log(data), userInfo.setUserInfo(data);
     popupFormProfile.close();
+  }).catch(function (err) {
+    console.log("\u041E\u0448\u0438\u0431\u043A\u0430: ".concat(err));
+  }).finally(function () {
+    popupFormProfile.renderLoading(false);
   });
 }
-
-// Форма изменения данных профиля
-var createPopupProfiles = function createPopupProfiles(item) {
-  var form = new _components_PopupWithForm_js__WEBPACK_IMPORTED_MODULE_4__["default"](item, handleProfileFormSubmit);
-  form.setEventListeners();
-  return form;
-};
-var popupFormProfile = createPopupProfiles(popupProfile);
+;
 
 // Обработчик сабмита формы создания карточки
 function handleCardFormSubmit(data) {
+  popupFormCard.renderLoading(true);
   api.setNewCard(data).then(function (data) {
     userCards.prependItem(createCard(data));
     console.log(data);
     popupFormCard.close();
+  }).catch(function (err) {
+    console.log("\u041E\u0448\u0438\u0431\u043A\u0430: ".concat(err));
+  }).finally(function () {
+    popupFormCard.renderLoading(false);
   });
 }
 ;
 
-// Форма создания карточки
-var createPopupCards = function createPopupCards(item) {
-  var form = new _components_PopupWithForm_js__WEBPACK_IMPORTED_MODULE_4__["default"](item, handleCardFormSubmit);
-  form.setEventListeners();
-  return form;
-};
-var popupFormCard = createPopupCards(popupCard);
-
-// попап изменения аватара
+// открытие попапа изменения аватара
 popupOpenButtonFormEditAvatar.addEventListener('click', function () {
   popupFormAvatar.open();
+  submitBtnFormPopupAvatar.textContent = 'Сохранить';
   validationFormAvatar.resetValidation();
 });
 
-//попап редактирования профиля
+// открытие попапа редактирования профиля
 popupOpenButtonFormEditProfile.addEventListener('click', function () {
   var userData = userInfo.getUserInfo();
   inputName.value = userData.name;
   inputAbout.value = userData.about;
   popupFormProfile.open();
+  submitBtnFormPopupProfile.textContent = 'Сохранить';
   validationFormProfile.resetValidation();
 });
 
-//попап добавления карточки
+// открытие попапа добавления карточки
 popupOpenButtonFormAddCard.addEventListener('click', function () {
   popupFormCard.open();
+  submitBtnFormPopupCard.textContent = 'Создать';
   validationFormCard.resetValidation();
 });
-
-// Попап большой картинки
-var classPopupBibImage = new _components_PopupWithImage_js__WEBPACK_IMPORTED_MODULE_5__["default"](popupBigImage);
-classPopupBibImage.setEventListeners();
-function handleOpenImagePopup(name, link) {
-  classPopupBibImage.open(name, link);
-}
-;
 })();
 
 /******/ })()
