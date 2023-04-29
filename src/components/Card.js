@@ -55,12 +55,12 @@ export default class Card {
 
     this._buttonDeleteCard.addEventListener('click', () => {
       this._handleDeleteClick(this._id);
-      console.log('здесь', this._id)
+      // console.log('здесь', this._id)
     });
 
     this._buttonLikeCard.addEventListener('click', () => {
       this._handleLikeClick(this._id);
-      console.log('клик', this._likes.length)
+      // console.log('клик', this._likes.length)
 
    });
   }

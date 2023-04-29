@@ -127,7 +127,7 @@ function createCard(data) {
           .then(data => {
             cardElement.removeLike();
             cardElement.setLikes(data)
-            console.log('удалить', data.likes.length)
+            // console.log('удалить', data.likes.length)
           })
           .catch((err) => { console.log(`Ошибка: ${err}`) });
 
@@ -136,7 +136,8 @@ function createCard(data) {
           .then(data => {
             cardElement.putLike();
             cardElement.setLikes(data)
-            console.log('лайкнуть', data.likes.length) })
+            // console.log('лайкнуть', data.likes.length)
+          })
           .catch((err) => { console.log(`Ошибка: ${err}`) });
       }
 
