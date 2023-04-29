@@ -34,7 +34,7 @@ export default class Api {
       headers: this.headers,
       body: JSON.stringify(avatar)
     })
-    .then(this._checkResponse);
+      .then(this._checkResponse);
   }
 
   getInitialCards() {
@@ -60,12 +60,12 @@ export default class Api {
     })
       .then(this._checkResponse);
   }
-getLike(){
-return fetch(`${this.url}/cards/${id}/likes`, {
-  headers: this.headers,
-})
-  .then(this._checkResponse);
-}
+  getLike(id) {
+    return fetch(`${this.url}/cards/${id}/likes`, {
+      headers: this.headers,
+    })
+      .then(this._checkResponse);
+  }
 
   addLike(id) {
     return fetch(`${this.url}/cards/${id}/likes`, {

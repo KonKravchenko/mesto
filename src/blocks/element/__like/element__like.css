@@ -1,34 +1,3 @@
-.section__like {
-  margin: 0;
-  padding: 0;
-  display:flex;
-  flex-direction: column;
-  align-items: center;
-  row-gap: 3px;
-  height: 100%;
-  border: none;
-}
-
-.number__like {
-display: flex;
-
-margin: 0;
-padding: 0;
-background-position: center;
-width: 10px;
-height: 13px;
-
-
-font-family: 'Inter';
-font-style: normal;
-font-weight: 400;
-font-size: 13px;
-line-height: 16px;
-text-align: center;
-
-color: #000000;
-}
-
 .element__like {
   display: flex;
   min-width: 22px;
@@ -40,15 +9,12 @@ color: #000000;
   background-size: cover;
   box-sizing: border-box;
   background-image: url(../../../images/__like_disabled.svg);
-
-
 }
 
 .element__like:hover {
   cursor: pointer;
   opacity: 0.5;
 }
-
 
 .element__like:active {
   background-image: url(../../../images/__like_active.svg);
