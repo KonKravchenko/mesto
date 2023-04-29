@@ -193,11 +193,12 @@ var Card = /*#__PURE__*/function () {
       });
       this._buttonDeleteCard.addEventListener('click', function () {
         _this4._handleDeleteClick(_this4._id);
-        console.log('здесь', _this4._id);
+        // console.log('здесь', this._id)
       });
+
       this._buttonLikeCard.addEventListener('click', function () {
         _this4._handleLikeClick(_this4._id);
-        console.log('клик', _this4._likes.length);
+        // console.log('клик', this._likes.length)
       });
     }
   }, {
@@ -916,7 +917,7 @@ function createCard(data) {
       api.deleteLike(id).then(function (data) {
         cardElement.removeLike();
         cardElement.setLikes(data);
-        console.log('удалить', data.likes.length);
+        // console.log('удалить', data.likes.length)
       }).catch(function (err) {
         console.log("\u041E\u0448\u0438\u0431\u043A\u0430: ".concat(err));
       });
@@ -924,7 +925,7 @@ function createCard(data) {
       api.addLike(id).then(function (data) {
         cardElement.putLike();
         cardElement.setLikes(data);
-        console.log('лайкнуть', data.likes.length);
+        // console.log('лайкнуть', data.likes.length)
       }).catch(function (err) {
         console.log("\u041E\u0448\u0438\u0431\u043A\u0430: ".concat(err));
       });
