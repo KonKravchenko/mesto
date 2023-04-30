@@ -83,13 +83,6 @@ var Api = /*#__PURE__*/function () {
       }).then(this._checkResponse);
     }
   }, {
-    key: "getLike",
-    value: function getLike(id) {
-      return fetch("".concat(this.url, "/cards/").concat(id, "/likes"), {
-        headers: this.headers
-      }).then(this._checkResponse);
-    }
-  }, {
     key: "addLike",
     value: function addLike(id) {
       return fetch("".concat(this.url, "/cards/").concat(id, "/likes"), {
@@ -107,8 +100,7 @@ var Api = /*#__PURE__*/function () {
     }
   }]);
   return Api;
-}(); //   Токен: e3cda1d4-1903-40f4-b79f-2419b5c60311
-// Идентификатор группы: cohort-64
+}();
 
 
 /***/ }),
@@ -135,7 +127,8 @@ var Card = /*#__PURE__*/function () {
     var _this = this;
     _classCallCheck(this, Card);
     _defineProperty(this, "setLikes", function (data) {
-      return _this._numberLike.textContent = data.likes.length;
+      _this._numberLike.textContent = data.length;
+      _this._likes = data;
     });
     this._name = _data.name;
     this._link = _data.link;
@@ -164,10 +157,7 @@ var Card = /*#__PURE__*/function () {
   }, {
     key: "_checkLike",
     value: function _checkLike() {
-      var _this3 = this;
-      if (this._likes.find(function (user) {
-        return user._id === _this3._userId;
-      })) {
+      if (this.isLiked()) {
         this.putLike();
       } else {
         this.removeLike();
@@ -180,25 +170,17 @@ var Card = /*#__PURE__*/function () {
       this._element = null;
     }
   }, {
-    key: "_getLikes",
-    value: function _getLikes() {
-      return this._numberLike.textContent = this._likes.length;
-    }
-  }, {
     key: "_addEventListeners",
     value: function _addEventListeners() {
-      var _this4 = this;
+      var _this3 = this;
       this._cardImage.addEventListener('click', function () {
-        _this4._handleImageClick(_this4._name, _this4._link);
+        _this3._handleImageClick(_this3._name, _this3._link);
       });
       this._buttonDeleteCard.addEventListener('click', function () {
-        _this4._handleDeleteClick(_this4._id);
-        // console.log('здесь', this._id)
+        _this3._handleDeleteClick(_this3._id);
       });
-
       this._buttonLikeCard.addEventListener('click', function () {
-        _this4._handleLikeClick(_this4._id);
-        // console.log('клик', this._likes.length)
+        _this3._handleLikeClick(_this3._id);
       });
     }
   }, {
@@ -212,12 +194,10 @@ var Card = /*#__PURE__*/function () {
       this._buttonLikeCard.classList.remove('element__like_active');
     }
   }, {
-    key: "_checkCardId",
-    value: function _checkCardId() {
+    key: "_checkDeleteButtonVisibility",
+    value: function _checkDeleteButtonVisibility() {
       if (this._userId === this._ownerId) {
-        // console.log(true)
         this._buttonDeleteCard.classList.remove('hidden');
-      } else {// console.log('не совпадает')
       }
     }
   }, {
@@ -229,15 +209,10 @@ var Card = /*#__PURE__*/function () {
       this._cardImage = this._element.querySelector('.element__image');
       this._cardImageTitle = this._element.querySelector('.element__title');
       this._numberLike = this._element.querySelector('.element__like-number');
-      this._checkCardId();
+      this._checkDeleteButtonVisibility();
       this._checkLike();
-      this._getLikes();
-      this.isLiked();
+      this.setLikes(this._likes);
       this._addEventListeners();
-
-      // console.log('getElement Card userId', this._userId)
-      // console.log('getElement card OwnerId', this._ownerId)
-
       this._cardImageTitle.textContent = this._name;
       this._cardImage.alt = this._name;
       this._cardImage.src = this._link;
@@ -424,6 +399,8 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
 function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+function _get() { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get.bind(); } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(arguments.length < 3 ? target : receiver); } return desc.value; }; } return _get.apply(this, arguments); }
+function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
@@ -439,7 +416,7 @@ var PopupWithConfirmation = /*#__PURE__*/function (_Popup) {
     var _this;
     _classCallCheck(this, PopupWithConfirmation);
     _this = _super.call(this, popup);
-    _this._form = document.querySelector('.form_confirm');
+    _this._form = _this._popup.querySelector('.form');
     return _this;
   }
   _createClass(PopupWithConfirmation, [{
@@ -448,13 +425,13 @@ var PopupWithConfirmation = /*#__PURE__*/function (_Popup) {
       this._handleSubmit = functionDeleteCard;
     }
   }, {
-    key: "submitHandler",
-    value: function submitHandler() {
+    key: "setEventListeners",
+    value: function setEventListeners() {
       var _this2 = this;
+      _get(_getPrototypeOf(PopupWithConfirmation.prototype), "setEventListeners", this).call(this);
       this._form.addEventListener("submit", function (event) {
         event.preventDefault();
         _this2._handleSubmit();
-        console.log('changeSubmitHandler');
       });
     }
   }]);
@@ -524,9 +501,9 @@ var PopupWithForm = /*#__PURE__*/function (_Popup) {
     key: "renderLoading",
     value: function renderLoading(isLoading) {
       if (isLoading) {
-        this._submitButton.textContent = "".concat(this._submitButton.textContent, "...");
+        this._submitButton.textContent = "\u0421\u043E\u0445\u0440\u0430\u043D\u0435\u043D\u0438\u0435...";
       } else {
-        this._submitButton.textContent = "".concat(this._submitButton.textContent);
+        this._submitButton.textContent = this._submitButton.value;
       }
     }
   }, {
@@ -690,9 +667,11 @@ var UserInfo = /*#__PURE__*/function () {
     value: function setUserInfo(_ref2) {
       var name = _ref2.name,
         about = _ref2.about,
+        avatar = _ref2.avatar,
         _id = _ref2._id;
       this._name.textContent = name;
       this._about.textContent = about;
+      this._avatar.src = avatar;
       this._userId = _id;
     }
   }, {
@@ -894,11 +873,14 @@ Promise.all([api.getProfileData(), api.getInitialCards()]).then(function (_ref) 
     user = _ref2[0],
     cards = _ref2[1];
   userInfo.setUserInfo(user);
-  profileName.textContent = user.name, profileAbout.textContent = user.about, profileAvatar.src = user.avatar;
+  // profileName.textContent = user.name,
+  //   profileAbout.textContent = user.about,
+  //   profileAvatar.src = user.avatar;
   userCards.renderItems(cards);
-}).catch(function (err) {
-  console.log("\u041E\u0448\u0438\u0431\u043A\u0430: ".concat(err));
 });
+// .catch((err) => {
+//   console.log(`Ошибка: ${err}`)
+// });
 
 // ---Функция создания Карточки---
 function createCard(data) {
@@ -916,21 +898,20 @@ function createCard(data) {
     if (cardElement.isLiked()) {
       api.deleteLike(id).then(function (data) {
         cardElement.removeLike();
-        cardElement.setLikes(data);
-        // console.log('удалить', data.likes.length)
+        cardElement.setLikes(data.likes);
+        console.log('удалить', data.likes.length);
       }).catch(function (err) {
         console.log("\u041E\u0448\u0438\u0431\u043A\u0430: ".concat(err));
       });
     } else {
       api.addLike(id).then(function (data) {
         cardElement.putLike();
-        cardElement.setLikes(data);
-        // console.log('лайкнуть', data.likes.length)
+        cardElement.setLikes(data.likes);
+        console.log('лайкнуть', data.likes.length);
       }).catch(function (err) {
         console.log("\u041E\u0448\u0438\u0431\u043A\u0430: ".concat(err));
       });
     }
-    return;
   });
   return cardElement.getElement();
 }
@@ -938,7 +919,6 @@ function createCard(data) {
 // ---Вызов класса формы подтверждения удаления Карточки---
 var confirmDeleteForm = new _components_PopupWithConfirmation_js__WEBPACK_IMPORTED_MODULE_7__["default"](popupConfirm);
 confirmDeleteForm.setEventListeners();
-confirmDeleteForm.submitHandler();
 
 // ---Вызов класса Section---
 var userCards = new _components_Section_js__WEBPACK_IMPORTED_MODULE_2__["default"]({
@@ -975,12 +955,12 @@ var popupFormCard = new _components_PopupWithForm_js__WEBPACK_IMPORTED_MODULE_4_
 popupFormCard.setEventListeners();
 
 // Попап большой картинки
-var classPopupBibImage = new _components_PopupWithImage_js__WEBPACK_IMPORTED_MODULE_5__["default"](popupBigImage);
-classPopupBibImage.setEventListeners();
+var imagePopup = new _components_PopupWithImage_js__WEBPACK_IMPORTED_MODULE_5__["default"](popupBigImage);
+imagePopup.setEventListeners();
 
 // обработчик открытия попапа с большой картинкой
 function handleOpenImagePopup(name, link) {
-  classPopupBibImage.open(name, link);
+  imagePopup.open(name, link);
 }
 ;
 
@@ -1030,7 +1010,6 @@ function handleCardFormSubmit(data) {
 // открытие попапа изменения аватара
 popupOpenButtonFormEditAvatar.addEventListener('click', function () {
   popupFormAvatar.open();
-  submitBtnFormPopupAvatar.textContent = 'Сохранить';
   validationFormAvatar.resetValidation();
 });
 
@@ -1040,14 +1019,12 @@ popupOpenButtonFormEditProfile.addEventListener('click', function () {
   inputName.value = userData.name;
   inputAbout.value = userData.about;
   popupFormProfile.open();
-  submitBtnFormPopupProfile.textContent = 'Сохранить';
   validationFormProfile.resetValidation();
 });
 
 // открытие попапа добавления карточки
 popupOpenButtonFormAddCard.addEventListener('click', function () {
   popupFormCard.open();
-  submitBtnFormPopupCard.textContent = 'Создать';
   validationFormCard.resetValidation();
 });
 })();
