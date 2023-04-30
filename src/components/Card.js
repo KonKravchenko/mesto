@@ -28,7 +28,7 @@ export default class Card {
   }
 
   _checkLike() {
-    if (this._likes.find(user => user._id === this._userId)) {
+    if (this.isLiked()) {
       this.putLike();
     } else {
       this.removeLike();
@@ -40,12 +40,10 @@ export default class Card {
     this._element = null;
   }
 
-  _getLikes(){
-    return this._numberLike.textContent = this._likes.length;
-  }
-
   setLikes = (data) => {
-  return this._numberLike.textContent = data.likes.length;
+
+    this._numberLike.textContent = data.length;
+    this._likes = data;
   }
 
   _addEventListeners() {
@@ -55,14 +53,11 @@ export default class Card {
 
     this._buttonDeleteCard.addEventListener('click', () => {
       this._handleDeleteClick(this._id);
-      // console.log('здесь', this._id)
     });
 
     this._buttonLikeCard.addEventListener('click', () => {
       this._handleLikeClick(this._id);
-      // console.log('клик', this._likes.length)
-
-   });
+    });
   }
 
   putLike() {
@@ -73,11 +68,9 @@ export default class Card {
     this._buttonLikeCard.classList.remove('element__like_active');
   }
 
-  _checkCardId() {
+  _checkDeleteButtonVisibility() {
     if (this._userId === this._ownerId) {
-      // console.log(true)
       this._buttonDeleteCard.classList.remove('hidden');
-    } else {      // console.log('не совпадает')
     }
   }
 
@@ -91,18 +84,11 @@ export default class Card {
     this._numberLike = this._element.querySelector('.element__like-number');
 
 
-    this._checkCardId();
+    this._checkDeleteButtonVisibility();
     this._checkLike();
-    this._getLikes();
+    this.setLikes(this._likes);
 
-    this.isLiked();
     this._addEventListeners();
-
-    // console.log('getElement Card userId', this._userId)
-    // console.log('getElement card OwnerId', this._ownerId)
-
-
-
 
     this._cardImageTitle.textContent = this._name;
     this._cardImage.alt = this._name;

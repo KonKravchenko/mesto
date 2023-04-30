@@ -60,12 +60,6 @@ export default class Api {
     })
       .then(this._checkResponse);
   }
-  getLike(id) {
-    return fetch(`${this.url}/cards/${id}/likes`, {
-      headers: this.headers,
-    })
-      .then(this._checkResponse);
-  }
 
   addLike(id) {
     return fetch(`${this.url}/cards/${id}/likes`, {
@@ -82,12 +76,5 @@ export default class Api {
     })
       .then(this._checkResponse);
   }
-
-
-
-
-
 }
-//   Токен: e3cda1d4-1903-40f4-b79f-2419b5c60311
-// Идентификатор группы: cohort-64
 

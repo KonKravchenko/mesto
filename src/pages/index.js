@@ -90,14 +90,14 @@ Promise.all([
 ])
   .then(([user, cards]) => {
     userInfo.setUserInfo(user)
-    profileName.textContent = user.name,
-      profileAbout.textContent = user.about,
-      profileAvatar.src = user.avatar;
+    // profileName.textContent = user.name,
+    //   profileAbout.textContent = user.about,
+    //   profileAvatar.src = user.avatar;
     userCards.renderItems(cards);
   })
-  .catch((err) => {
-    console.log(`Ошибка: ${err}`)
-  });
+// .catch((err) => {
+//   console.log(`Ошибка: ${err}`)
+// });
 
 // ---Функция создания Карточки---
 function createCard(data) {
@@ -121,13 +121,13 @@ function createCard(data) {
     }
     ,
     (id) => {
-
       if (cardElement.isLiked()) {
         api.deleteLike(id)
           .then(data => {
             cardElement.removeLike();
-            cardElement.setLikes(data)
-            // console.log('удалить', data.likes.length)
+            cardElement.setLikes(data.likes)
+
+            console.log('удалить', data.likes.length)
           })
           .catch((err) => { console.log(`Ошибка: ${err}`) });
 
@@ -135,14 +135,14 @@ function createCard(data) {
         api.addLike(id)
           .then(data => {
             cardElement.putLike();
-            cardElement.setLikes(data)
-            // console.log('лайкнуть', data.likes.length)
+            cardElement.setLikes(data.likes)
+
+            console.log('лайкнуть', data.likes.length)
           })
           .catch((err) => { console.log(`Ошибка: ${err}`) });
       }
 
-      return
-}
+    }
   )
 
   return cardElement.getElement();
@@ -151,7 +151,6 @@ function createCard(data) {
 // ---Вызов класса формы подтверждения удаления Карточки---
 const confirmDeleteForm = new PopupWithConfirmation(popupConfirm);
 confirmDeleteForm.setEventListeners();
-confirmDeleteForm.submitHandler();
 
 // ---Вызов класса Section---
 const userCards = new Section(
@@ -192,13 +191,13 @@ const popupFormCard = new PopupWithForm(popupCard, handleCardFormSubmit);
 popupFormCard.setEventListeners();
 
 // Попап большой картинки
-const classPopupBibImage = new PopupWithImage(popupBigImage);
-classPopupBibImage.setEventListeners();
+const imagePopup = new PopupWithImage(popupBigImage);
+imagePopup.setEventListeners();
 
 
 // обработчик открытия попапа с большой картинкой
 function handleOpenImagePopup(name, link) {
-  classPopupBibImage.open(name, link);
+  imagePopup.open(name, link);
 };
 
 // Обработчик сабмита изменения Аватара
@@ -255,7 +254,6 @@ function handleCardFormSubmit(data) {
 // открытие попапа изменения аватара
 popupOpenButtonFormEditAvatar.addEventListener('click', () => {
   popupFormAvatar.open();
-  submitBtnFormPopupAvatar.textContent = 'Сохранить';
   validationFormAvatar.resetValidation();
 });
 
@@ -265,13 +263,11 @@ popupOpenButtonFormEditProfile.addEventListener('click', () => {
   inputName.value = userData.name;
   inputAbout.value = userData.about;
   popupFormProfile.open();
-  submitBtnFormPopupProfile.textContent = 'Сохранить';
   validationFormProfile.resetValidation();
 });
 
 // открытие попапа добавления карточки
 popupOpenButtonFormAddCard.addEventListener('click', () => {
   popupFormCard.open();
-  submitBtnFormPopupCard.textContent = 'Создать';
   validationFormCard.resetValidation();
 });
