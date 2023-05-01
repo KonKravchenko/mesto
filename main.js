@@ -417,7 +417,6 @@ var PopupWithConfirmation = /*#__PURE__*/function (_Popup) {
     _classCallCheck(this, PopupWithConfirmation);
     _this = _super.call(this, popup);
     _this._form = _this._popup.querySelector('.form');
-    _this._submitButton = _this._form.querySelector('.form__button');
     return _this;
   }
   _createClass(PopupWithConfirmation, [{
