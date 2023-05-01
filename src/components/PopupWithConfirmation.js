@@ -5,7 +5,6 @@ export default class PopupWithConfirmation extends Popup {
   constructor(popup) {
     super(popup);
     this._form = this._popup.querySelector('.form');
-    this._submitButton = this._form.querySelector('.form__button');
   }
 
   setCallback(functionDeleteCard) {
