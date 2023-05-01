@@ -417,6 +417,7 @@ var PopupWithConfirmation = /*#__PURE__*/function (_Popup) {
     _classCallCheck(this, PopupWithConfirmation);
     _this = _super.call(this, popup);
     _this._form = _this._popup.querySelector('.form');
+    _this._submitButton = _this._form.querySelector('.form__button');
     return _this;
   }
   _createClass(PopupWithConfirmation, [{
@@ -873,9 +874,6 @@ Promise.all([api.getProfileData(), api.getInitialCards()]).then(function (_ref) 
     user = _ref2[0],
     cards = _ref2[1];
   userInfo.setUserInfo(user);
-  // profileName.textContent = user.name,
-  //   profileAbout.textContent = user.about,
-  //   profileAvatar.src = user.avatar;
   userCards.renderItems(cards);
 }).catch(function (err) {
   console.log("\u041E\u0448\u0438\u0431\u043A\u0430: ".concat(err));
