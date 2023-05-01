@@ -877,10 +877,9 @@ Promise.all([api.getProfileData(), api.getInitialCards()]).then(function (_ref) 
   //   profileAbout.textContent = user.about,
   //   profileAvatar.src = user.avatar;
   userCards.renderItems(cards);
+}).catch(function (err) {
+  console.log("\u041E\u0448\u0438\u0431\u043A\u0430: ".concat(err));
 });
-// .catch((err) => {
-//   console.log(`Ошибка: ${err}`)
-// });
 
 // ---Функция создания Карточки---
 function createCard(data) {
