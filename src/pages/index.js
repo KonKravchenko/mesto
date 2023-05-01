@@ -95,9 +95,9 @@ Promise.all([
     //   profileAvatar.src = user.avatar;
     userCards.renderItems(cards);
   })
-// .catch((err) => {
-//   console.log(`Ошибка: ${err}`)
-// });
+.catch((err) => {
+  console.log(`Ошибка: ${err}`)
+});
 
 // ---Функция создания Карточки---
 function createCard(data) {
