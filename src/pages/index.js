@@ -90,9 +90,6 @@ Promise.all([
 ])
   .then(([user, cards]) => {
     userInfo.setUserInfo(user)
-    // profileName.textContent = user.name,
-    //   profileAbout.textContent = user.about,
-    //   profileAvatar.src = user.avatar;
     userCards.renderItems(cards);
   })
 .catch((err) => {
